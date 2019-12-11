@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    name: druidDataSource
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://11.53.56.70:3306/scps3?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+    username: scps
+    password: MXeh#b3d4ZstO*9oamt3
+
+#  resources:
+#    # 静态资源配置
+#    static-locations: classpath:/static/
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+  thymeleaf:
+    cache: false
+    #模板配置
+
+mybatis-plus:
+  mapper-locations: classpath*:com/example/mapper**/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: true
