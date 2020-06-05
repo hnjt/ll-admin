@@ -1,11 +1,12 @@
-package com.example.domain;
+package com.ll.admin.domain;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.io.Serializable;
 
+import javax.persistence.*;
+
 @Entity
+@Table
 public class Role implements Serializable {
 
     private static final long serialVersionUID = 2L;
@@ -14,10 +15,6 @@ public class Role implements Serializable {
     @GeneratedValue
     private Long id;
     private String name;
-
-    public Role() {
-        super();
-    }
 
     public Long getId() {
         return id;
@@ -34,6 +31,7 @@ public class Role implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
 
     @Override
     public String toString() {

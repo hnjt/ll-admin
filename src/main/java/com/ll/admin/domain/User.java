@@ -1,16 +1,15 @@
-package com.example.domain;
+package com.ll.admin.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
+@Table
 public class User implements Serializable,UserDetails{
 
     private static final long serialVersionUID = 1L;
@@ -24,7 +23,7 @@ public class User implements Serializable,UserDetails{
     private String password;
 
     @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
-    private List<Role> roles;
+    private Set<Role> roles = new HashSet<>( );
 
     public User() {
         super();
@@ -70,11 +69,11 @@ public class User implements Serializable,UserDetails{
         this.password = password;
     }
 
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
@@ -93,7 +92,7 @@ public class User implements Serializable,UserDetails{
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         ArrayList<GrantedAuthority> auths = new ArrayList<>();
-        List<Role> roles = this.getRoles();
+        Set<Role> roles = this.getRoles();
         for (Role role : roles) {
             auths.add( new SimpleGrantedAuthority( role.getName() ) );
         }

@@ -1,6 +1,6 @@
-package com.example.dao;
+package com.ll.admin.dao;
 
-import com.example.domain.User;
+import com.ll.admin.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

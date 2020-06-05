@@ -1,6 +1,6 @@
-package com.example.config;
+package com.ll.config;
 
-import com.example.service.CustomUserService;
+import com.ll.admin.service.CustomUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

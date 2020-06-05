@@ -1,4 +1,4 @@
-package com.example.domain;
+package com.ll.admin.domain;
 
 import java.io.Serializable;
 

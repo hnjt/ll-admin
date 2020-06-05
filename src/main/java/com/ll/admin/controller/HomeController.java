@@ -1,7 +1,7 @@
-package com.example.controller;
+package com.ll.admin.controller;
 
-import com.example.domain.Msg;
-import com.example.domain.User;
+import com.ll.admin.domain.Msg;
+import com.ll.admin.domain.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;

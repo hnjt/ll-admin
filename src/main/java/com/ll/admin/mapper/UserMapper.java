@@ -1,6 +1,6 @@
-//package com.example.mapper;
+//package com.ll.admin.mapper;
 //
-//import com.example.domain.User2;
+//import com.ll.admin.domain.User2;
 //import org.apache.ibatis.annotations.Mapper;
 //import org.apache.ibatis.annotations.Param;
 //import org.springframework.stereotype.Repository;

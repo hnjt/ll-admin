@@ -1,7 +1,7 @@
-package com.example.service;
+package com.ll.admin.service;
 
-import com.example.dao.UserRepository;
-import com.example.domain.User;
+import com.ll.admin.dao.UserRepository;
+import com.ll.admin.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
