@@ -17,6 +17,27 @@
 
     <properties>
         <java.version>1.8</java.version>
+
+        <!--mybatis-->
+        <mybatis.boot.version>1.3.2</mybatis.boot.version>
+        <mybatis.version>3.4.6</mybatis.version>
+        <mybatis.plus.version>3.0.7.1</mybatis.plus.version>
+
+        <!--mysql-->
+        <mysql.drive.version>5.1.45</mysql.drive.version>
+        <mysql.druid.version>1.1.10</mysql.druid.version>
+
+        <!--swagger2-->
+        <swagger2.version>2.9.2</swagger2.version>
+
+        <!--commons-->
+        <lang3.version>3.9</lang3.version>
+        <json.version>1.2.62</json.version>
+        <fileupload.version>1.3.3</fileupload.version>
+
+        <!--maven-->
+        <maven.version>2.22.0</maven.version>
+
     </properties>
 
     <dependencies>
@@ -27,7 +48,7 @@
         </dependency>
 
         <!--security-->
-        <dependency>
+        <dependency><!--thymeleaf支持权限标签-->
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         </dependency>
@@ -68,35 +89,34 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- mybatis+plus -->
-        <dependency>
+        <!-- mybatis -->
+        <dependency><!--@Mapper @MapperScan 支持-->
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.1.1</version>
+            <version>${mybatis.boot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.4.4</version>
+            <version>${mybatis.version}</version>
         </dependency>
-        <dependency>
+        <dependency><!--分页插件-->
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.0.7.1</version>
+            <version>${mybatis.plus.version}</version>
         </dependency>
 
-        <!-- MySQL Driver -->
-        <dependency>
+        <!--mysql-->
+        <dependency><!--数据库驱动-->
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.45</version>
+            <version>${mysql.drive.version}</version>
             <scope>runtime</scope>
         </dependency>
-        <!-- Druid Pool -->
-        <dependency>
+        <dependency><!--数据库连接池-->
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>1.1.9</version>
+            <version>${mysql.druid.version}</version>
         </dependency>
 
         <!--tomcat-->
@@ -118,21 +138,33 @@
             </exclusions>
         </dependency>
 
+        <!-- swagger2 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger2.version}</version>
+        </dependency>
+
         <!--工具包-->
         <dependency><!--lang-->
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.8.1</version>
+            <version>${lang3.version}</version>
         </dependency>
         <dependency><!--json-->
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.62</version>
+            <version>${json.version}</version>
         </dependency>
         <dependency><!-- fileupload -->
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.3.3</version>
+            <version>${fileupload.version}</version>
         </dependency>
 
     </dependencies>
@@ -162,7 +194,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.20.1</version>
+                <version>${maven.version}</version>
                 <configuration>
                     <skipTests>true</skipTests>
                 </configuration>

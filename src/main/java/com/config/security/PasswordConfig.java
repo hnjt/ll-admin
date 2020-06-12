@@ -1,4 +1,4 @@
-package com.ll.config;
+package com.config.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 

@@ -10,30 +10,29 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table
-public class User implements Serializable,UserDetails{
+public class Login implements Serializable,UserDetails{
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue
-    private Long id;
+    private String id;
     private String name;
-    private Integer age;
     private String username;
     private String password;
 
     @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>( );
 
-    public User() {
+    public Login() {
         super();
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -43,14 +42,6 @@ public class User implements Serializable,UserDetails{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public String getUsername() {
@@ -79,10 +70,9 @@ public class User implements Serializable,UserDetails{
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Login{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", age=" + age +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", roles=" + roles +

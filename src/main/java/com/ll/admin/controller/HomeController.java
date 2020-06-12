@@ -1,7 +1,8 @@
 package com.ll.admin.controller;
 
+import com.ll.admin.domain.Login;
 import com.ll.admin.domain.Msg;
-import com.ll.admin.domain.User;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,6 +10,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Controller
 public class HomeController {
@@ -29,8 +37,8 @@ public class HomeController {
         /**
          * authentication.getPrincipal() 可以强转为登录对象获取登录信息
          */
-        User user =(User) authentication.getPrincipal();
-        System.out.println("authentication.getPrincipal():获取登录对象信息"+user.getPassword());
+        Login login =(Login) authentication.getPrincipal();
+        System.out.println("authentication.getPrincipal():获取登录对象信息"+ login.getPassword());
         String[] split = authentication.getDetails().toString().split( ";" );
         String[] split1 = split[0].split( ":" );
         String remoteIpAddress = "";
@@ -54,6 +62,15 @@ public class HomeController {
          */
         System.out.println("获取登录角色："+authentication.getAuthorities());
         return "/index";
+    }
+
+    @RequestMapping("/loginFail")
+    public String loginFail (HttpServletRequest request, Model model){
+        HttpSession session = request.getSession();
+        Object attributes = session.getAttribute( "SPRING_SECURITY_LAST_EXCEPTION" );
+        System.out.println( attributes.toString() );
+        model.addAttribute( "msg",attributes.toString());
+        return "login";
     }
 
     /**

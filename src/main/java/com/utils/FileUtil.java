@@ -71,7 +71,7 @@ public class FileUtil {
 //		String fileName = LocalDate.now().toString()+".xls";
 		try {
 			HttpHeaders headers = new HttpHeaders();
-			String userAgent = request.getHeader( "User-Agent" );//获取浏览器
+			String userAgent = request.getHeader( "Login-Agent" );//获取浏览器
 			if (userAgent.contains("firefox")) {
 				fileName = new String(fileName.getBytes("UTF-8"), "ISO8859-1"); // firefox
 			} else if (userAgent.contains("MSIE")) {

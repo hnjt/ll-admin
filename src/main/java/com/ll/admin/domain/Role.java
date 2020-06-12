@@ -1,6 +1,5 @@
 package com.ll.admin.domain;
 
-import javax.persistence.GeneratedValue;
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -12,15 +11,14 @@ public class Role implements Serializable {
     private static final long serialVersionUID = 2L;
 
     @Id
-    @GeneratedValue
-    private Long id;
+    private String id;
     private String name;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
