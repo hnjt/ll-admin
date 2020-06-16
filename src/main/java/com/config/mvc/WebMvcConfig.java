@@ -1,5 +1,6 @@
 package com.config.mvc;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -9,11 +10,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
+    @Value( "${security-fig.login-url}" )
+    private String loginUrl;
+    @Value( "${security-fig.swagger-url}" )
+    private String swaggerUrl;
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController( "/login" ).setViewName( "login" );
-        registry.addViewController( "/swagger" ).setViewName( "redirect:/swagger-ui.html" );
-        registry.addViewController( "/doc" ).setViewName( "redirect:/swagger-ui.html" );
+        registry.addViewController( loginUrl ).setViewName( loginUrl );
+        registry.addViewController( swaggerUrl ).setViewName( "redirect:/swagger-ui.html" );
         registry.setOrder( Ordered.HIGHEST_PRECEDENCE);
     }
 

@@ -1,6 +1,8 @@
 package com.config.security;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,10 +13,23 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+@Slf4j
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true,prePostEnabled = true)//开启方法控制注解 @Secured、@PreAuthorize、@PostAuthorize
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Value( "${security-fig.login-url}" )
+    private String loginUrl;
+    @Value( "${security-fig.login-processing-url}" )
+    private String loginProcessingUrl;
+    @Value( "${security-fig.error-url}" )
+    private String errorUrl;
+    @Value( "${security-fig.logout-url}" )
+    private String logoutUrl;
+
+    @Autowired
+    private CustomLogoutService customLogoutService;
 
     @Bean
     UserDetailsService customUserService(){
@@ -28,15 +43,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage( "/login" )//登录页面
-                .loginProcessingUrl("/loginProcess")//登录action 提交地址
+                .loginPage( loginUrl )//登录页面
+                .loginProcessingUrl(loginProcessingUrl)//登录action 提交地址
 //                .defaultSuccessUrl( "/index.html" )//这里指定的是静态页面，必须加后缀，如果不指定，就走路径为“/”的方法
 //                .failureUrl( "/login?error" )
-                .failureUrl("/loginFail")//登录失败处理方法
+                .failureUrl(errorUrl)//登录失败处理方法
                 .permitAll()
                 .and()
-                .logout().permitAll();
-
+                .logout()
+                .logoutUrl(logoutUrl)
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessHandler( customLogoutService )
+                .permitAll();
     }
 
     @Override
@@ -55,5 +73,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //走自定义认证
         auth.authenticationProvider(provider);
     }
+
 
 }

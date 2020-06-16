@@ -29,7 +29,7 @@
         <div sec:authorize="hasRole('ROLE_USER')">
             <p class="bg-info">用户能查看的信息</p>
         </div>
-        <form th:action="@{/logout}" method="post">
+        <form th:action="@{/signout}" method="post">
             <input type="submit" class="btn btn-primary" value="注销" >
         </form>
     </div>

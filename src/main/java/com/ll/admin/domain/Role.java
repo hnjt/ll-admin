@@ -11,7 +11,9 @@ public class Role implements Serializable {
     private static final long serialVersionUID = 2L;
 
     @Id
+    @Column(name = "ID")
     private String id;
+    @Column(name = "NAME")
     private String name;
 
     public String getId() {

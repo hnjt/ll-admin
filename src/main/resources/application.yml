@@ -29,6 +29,8 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 
   ############################ --  thymeleaf -- ############################
 
@@ -77,5 +79,17 @@ mybatis-plus:
   mapper-locations: classpath*:com/ll/mapper**/*Mapper.xml
   configuration:
     map-underscore-to-camel-case: true
+
+
+######################################################################
+#                       -- final-value --                           #
+######################################################################
+  ############################ --  认证 -- ############################
+security-fig:
+  login-url:  /login
+  login-processing-url: /loginProcess
+  error-url:  /loginFail
+  logout-url: /signout
+  swagger-url:  /doc
 
 
