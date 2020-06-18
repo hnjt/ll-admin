@@ -6,6 +6,8 @@ import java.util.Date;
 
 import com.ll.admin.dao.UserRepository;
 import com.ll.admin.domain.Login;
+import com.utils.EncryptionUtil;
+import com.utils.MD5;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -39,6 +41,9 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
         remoteAddress = "0:0:0:0:0:0:0:1".equals( remoteAddress ) ? "127.0.0.1" : remoteAddress; //访问IP
         String userName = authentication.getName();	// 这个获取表单输入中返回的用户名;
         String password = authentication.getCredentials().toString();	// 这个是表单中输入的密码；
+        //密码处理
+        password = EncryptionUtil.encrypt( password );
+        password = MD5.getMD5( password );
 
         Login loginData = (Login) userDetailService.loadUserByUsername(userName);
 
@@ -102,8 +107,10 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
         Collection<? extends GrantedAuthority> authorities = loginData.getAuthorities();
         // 构建返回的用户登录成功的token
 
-        log.info( "**************************** 帐户：{}     在 #-{}-#   采用   *** {} ***   登录系统 ****************************",
-                userName,newDate,remoteAddress );
+        log.info(
+                "**************************** 帐户：{}     在 #-{}-#   使用   *** {} ***   登录系统 ****************************",
+                userName,newDate,remoteAddress
+        );
 
         loginData.setLoginIp( remoteAddress );
         loginData.setLoginTime( newDate );
