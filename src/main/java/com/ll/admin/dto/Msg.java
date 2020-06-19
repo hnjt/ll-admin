@@ -1,4 +1,4 @@
-package com.ll.admin.domain;
+package com.ll.admin.dto;
 
 import java.io.Serializable;
 

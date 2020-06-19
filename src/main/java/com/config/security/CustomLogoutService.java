@@ -1,6 +1,6 @@
 package com.config.security;
 
-import com.ll.admin.dao.UserRepository;
+import com.ll.admin.dao.LoginRepository;
 import com.ll.admin.domain.Login;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class CustomLogoutService implements LogoutSuccessHandler {
     private String loginUrl;
 
     @Autowired
-    private UserRepository userRepository;
+    private LoginRepository loginRepository;
 
     @Override
     public void onLogoutSuccess(HttpServletRequest request,
@@ -43,7 +43,7 @@ public class CustomLogoutService implements LogoutSuccessHandler {
         WebAuthenticationDetails details =(WebAuthenticationDetails) authentication.getDetails();
         String remoteAddress = details.getRemoteAddress();
 
-        Login login = userRepository.findByUsername( authentication.getName() );
+        Login login = loginRepository.findByUsername( authentication.getName() );
 
         login.setLogoutTime( new Date(  ) );//退出时间
 

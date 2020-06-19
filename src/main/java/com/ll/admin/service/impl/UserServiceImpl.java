@@ -1,6 +1,6 @@
 package com.ll.admin.service.impl;
 
-import com.ll.admin.dao.UserRepository;
+import com.ll.admin.dao.LoginRepository;
 import com.ll.admin.domain.Login;
 import com.ll.admin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +14,10 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private LoginRepository loginRepository;
 
     @Override
     public List<Login> findAll() {
-        return this.userRepository.findAll();
+        return this.loginRepository.findAll();
     }
 }

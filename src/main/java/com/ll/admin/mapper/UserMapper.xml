@@ -1,8 +1,71 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >-->
-<!--<mapper namespace="com.ller.UserMapper">-->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ll.admin.mapper.UserMapper">
 
-<!--    <select id="findUserByUsername" parameterType="java.lang.String" resultType="com.llin.User2">-->
-<!--        select * from login u left join user_roles ur on u.id = ur.user_id where u.username = #{username}-->
-<!--    </select>-->
-<!--</mapper>-->
+    <sql id="login">
+        l.ID,
+        l.NAME,
+        l.USER_NAME,
+        l.STARTS,
+        l.CREATE_DATE AS lCreateDate,
+        l.UPDATE_DATE AS lUpdateDate,
+        l.CREATOR AS lReator,
+        l.MODIFIER AS lModifier
+    </sql>
+
+    <sql id="user">
+       u.PHONE,
+       u.IDENTITY,
+       u.ADDRESS1,
+       u.ADDRESS2,
+       u.ADDRESS3,
+       u.ADDRESS4,
+       u.EMAIL,
+       u.WECHAT,
+       u.SEX,
+       u.NATION,
+       u.CREATE_DATE AS uCreateDate,
+       u.UPDATE_DATE AS uUpdateDate,
+       u.CREATOR AS uReator,
+       u.MODIFIER AS uModifier
+    </sql>
+
+    <select id="findAllUser" resultType="java.util.Map">
+        SELECT
+        l.ID,
+        l.NAME,
+        l.USER_NAME,
+        l.STARTS,
+        l.CREATE_DATE,
+        l.UPDATE_DATE,
+        GROUP_CONCAT(r.`NAME`) AS roleNames
+        FROM login l
+        LEFT JOIN (select LOGIN_ID,ROLES_ID from login_roles) lr
+        ON l.ID = lr.LOGIN_ID
+        LEFT JOIN role r
+        ON lr.ROLES_ID = R.ID
+        GROUP BY l.ID
+        ORDER BY l.NAME DESC,l.CREATE_DATE ASC
+    </select>
+
+    <select id="getUser" resultType="java.util.Map">
+        SELECT
+        <include refid="login"></include>,
+        <include refid="user"></include>,
+        GROUP_CONCAT(r.`NAME`) AS roleNames,
+        GROUP_CONCAT(lr.CREATE_DATE) AS lrCreateDates,
+        GROUP_CONCAT(lr.UPDATE_DATE) AS lrUpdateDates,
+        GROUP_CONCAT(lr.CREATOR) AS lcReators,
+        GROUP_CONCAT(lr.MODIFIER) AS lrModifiers
+        FROM login l
+        LEFT JOIN user u
+        ON l.ID = u.ID
+        LEFT JOIN login_roles lr
+        ON l.ID = lr.LOGIN_ID
+        LEFT JOIN role r
+        ON lr.ROLES_ID = R.ID
+        WHERE l.ID = #{userId}
+        GROUP BY l.ID
+        ORDER BY l.NAME DESC,l.CREATE_DATE ASC
+    </select>
+</mapper>

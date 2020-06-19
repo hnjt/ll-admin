@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+/**
+ * 角色信息
+ */
 @Entity
 @Table
 public class Role implements Serializable {
