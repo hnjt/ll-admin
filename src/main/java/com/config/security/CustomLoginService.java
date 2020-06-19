@@ -1,6 +1,6 @@
 package com.config.security;
 
-import com.ll.admin.dao.UserRepository;
+import com.ll.admin.dao.LoginRepository;
 import com.ll.admin.domain.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -14,12 +14,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class CustomLoginService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private LoginRepository loginRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Login login = this.userRepository.findByUsername( username );
+        Login login = this.loginRepository.findByUsername( username );
         if (login == null)
             throw new BadCredentialsException("用户不存在！");
 

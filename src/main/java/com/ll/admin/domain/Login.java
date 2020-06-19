@@ -2,7 +2,6 @@ package com.ll.admin.domain;
 
 import com.commons.EntityVo;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.utils.IpUtils;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,6 +11,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * 登录信息
+ */
 @Entity
 @Table
 public class Login extends EntityVo implements Serializable,UserDetails{

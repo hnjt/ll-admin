@@ -4,8 +4,10 @@ package com.config.security;
 import java.util.Collection;
 import java.util.Date;
 
-import com.ll.admin.dao.UserRepository;
+import com.ll.admin.dao.LoginRepository;
 import com.ll.admin.domain.Login;
+import com.utils.EncryptionUtil;
+import com.utils.MD5;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -29,7 +31,7 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
     @Autowired
     private UserDetailsService userDetailService;
     @Autowired
-    private UserRepository userRepository;
+    private LoginRepository loginRepository;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -39,6 +41,9 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
         remoteAddress = "0:0:0:0:0:0:0:1".equals( remoteAddress ) ? "127.0.0.1" : remoteAddress; //访问IP
         String userName = authentication.getName();	// 这个获取表单输入中返回的用户名;
         String password = authentication.getCredentials().toString();	// 这个是表单中输入的密码；
+        //密码处理
+        password = EncryptionUtil.encrypt( password );
+        password = MD5.getMD5( password );
 
         Login loginData = (Login) userDetailService.loadUserByUsername(userName);
 
@@ -63,14 +68,14 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
 
             if (null != loginData.getCnt() && loginData.getCnt() > 4){
                 loginData.setStarts( "400" );
-                if (null != userRepository.save( loginData ))
+                if (null != loginRepository.save( loginData ))
                     log.info( "帐户：{}已被锁定！",userName);
                 throw new BadCredentialsException( "帐户被锁定！" );//密码错误，锁定
             }else if ("400".equals( loginData.getStarts() )){
                 throw new BadCredentialsException( "帐户被锁定！" );
             }
 
-            if (null != userRepository.save( loginData ))
+            if (null != loginRepository.save( loginData ))
                 log.info( "密码错误 {} 次",cnt );
             throw new BadCredentialsException( "密码错误" + cnt + "次，5次后锁定账号！");
         }
@@ -102,12 +107,14 @@ public class SecurityAuthenticationProvider implements AuthenticationProvider {
         Collection<? extends GrantedAuthority> authorities = loginData.getAuthorities();
         // 构建返回的用户登录成功的token
 
-        log.info( "**************************** 帐户：{}     在 #-{}-#   采用   *** {} ***   登录系统 ****************************",
-                userName,newDate,remoteAddress );
+        log.info(
+                "**************************** 帐户：{}     在 #-{}-#   使用   *** {} ***   登录系统 ****************************",
+                userName,newDate,remoteAddress
+        );
 
         loginData.setLoginIp( remoteAddress );
         loginData.setLoginTime( newDate );
-        userRepository.save(loginData);
+        loginRepository.save(loginData);
 
         return new UsernamePasswordAuthenticationToken(loginData, password, authorities);
     }
