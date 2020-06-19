@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50647
 File Encoding         : 65001
 
-Date: 2020-06-19 09:30:40
+Date: 2020-06-19 15:12:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,11 +20,11 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `pid` int(11) DEFAULT NULL,
-  `city_name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `type` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
+  `ID` int(11) NOT NULL DEFAULT '0',
+  `PID` int(11) DEFAULT NULL,
+  `CITY_NAME` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `TYPE` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
@@ -3471,16 +3471,93 @@ INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541212', 'TEST', 'test', 
 -- ----------------------------
 DROP TABLE IF EXISTS `login_roles`;
 CREATE TABLE `login_roles` (
+  `ID` varchar(32) NOT NULL,
   `LOGIN_ID` varchar(32) NOT NULL,
   `ROLES_ID` varchar(32) NOT NULL,
-  PRIMARY KEY (`LOGIN_ID`,`ROLES_ID`)
+  `CREATE_DATE` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `UPDATE_DATE` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `CREATOR` varchar(255) DEFAULT NULL,
+  `MODIFIER` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`ID`,`LOGIN_ID`,`ROLES_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of login_roles
 -- ----------------------------
-INSERT INTO `login_roles` VALUES ('9C1E37A2366E3441B1947F6364541112', '9C1E37A2366E3441B1947F6364541117');
-INSERT INTO `login_roles` VALUES ('9C1E37A2366E3441B1947F6364541212', '1C1E37A2366E3441B1947F6364541212');
+INSERT INTO `login_roles` VALUES ('9C1E27A2366E3441B1947F136454122S', '9C1E37A2366E3441B1947F6364541212', '9C1E37A2366E3441B1947F6364541117', '2020-06-19 14:06:18', '2020-06-19 14:06:18', null, null);
+INSERT INTO `login_roles` VALUES ('9C1E27A2366E3441B1947F636454122S', '9C1E37A2366E3441B1947F6364541212', '1C1E37A2366E3441B1947F6364541212', '2020-06-19 14:02:15', '2020-06-19 14:02:15', null, null);
+INSERT INTO `login_roles` VALUES ('9C2E37A2366E3441B1947F6364541117', '9C1E37A2366E3441B1947F6364541112', '9C1E37A2366E3441B1947F6364541117', '2020-06-19 14:01:37', '2020-06-19 14:01:37', null, null);
+
+-- ----------------------------
+-- Table structure for nation
+-- ----------------------------
+DROP TABLE IF EXISTS `nation`;
+CREATE TABLE `nation` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NATION_NAME` varchar(20) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of nation
+-- ----------------------------
+INSERT INTO `nation` VALUES ('1', '汉族');
+INSERT INTO `nation` VALUES ('2', '蒙古族');
+INSERT INTO `nation` VALUES ('3', '回族');
+INSERT INTO `nation` VALUES ('4', '藏族');
+INSERT INTO `nation` VALUES ('5', '维吾尔族');
+INSERT INTO `nation` VALUES ('6', '苗族');
+INSERT INTO `nation` VALUES ('7', '彝族');
+INSERT INTO `nation` VALUES ('8', '壮族');
+INSERT INTO `nation` VALUES ('9', '布依族');
+INSERT INTO `nation` VALUES ('10', '朝鲜族');
+INSERT INTO `nation` VALUES ('11', '满族');
+INSERT INTO `nation` VALUES ('12', '侗族');
+INSERT INTO `nation` VALUES ('13', '瑶族');
+INSERT INTO `nation` VALUES ('14', '白族');
+INSERT INTO `nation` VALUES ('15', '土家族');
+INSERT INTO `nation` VALUES ('16', '哈尼族');
+INSERT INTO `nation` VALUES ('17', '哈萨克族');
+INSERT INTO `nation` VALUES ('18', '傣族');
+INSERT INTO `nation` VALUES ('19', '黎族');
+INSERT INTO `nation` VALUES ('20', '傈僳族');
+INSERT INTO `nation` VALUES ('21', '佤族');
+INSERT INTO `nation` VALUES ('22', '畲族');
+INSERT INTO `nation` VALUES ('23', '高山族');
+INSERT INTO `nation` VALUES ('24', '拉祜族');
+INSERT INTO `nation` VALUES ('25', '水族');
+INSERT INTO `nation` VALUES ('26', '东乡族');
+INSERT INTO `nation` VALUES ('27', '纳西族');
+INSERT INTO `nation` VALUES ('28', '景颇族');
+INSERT INTO `nation` VALUES ('29', '柯尔克孜族');
+INSERT INTO `nation` VALUES ('30', '土族');
+INSERT INTO `nation` VALUES ('31', '达斡尔族');
+INSERT INTO `nation` VALUES ('32', '仫佬族');
+INSERT INTO `nation` VALUES ('33', '羌族');
+INSERT INTO `nation` VALUES ('34', ' 布朗族');
+INSERT INTO `nation` VALUES ('35', ' 撒拉族');
+INSERT INTO `nation` VALUES ('36', ' 毛难族');
+INSERT INTO `nation` VALUES ('37', ' 仡佬族');
+INSERT INTO `nation` VALUES ('38', ' 锡伯族');
+INSERT INTO `nation` VALUES ('39', ' 阿昌族');
+INSERT INTO `nation` VALUES ('40', ' 普米族');
+INSERT INTO `nation` VALUES ('41', ' 塔吉克族');
+INSERT INTO `nation` VALUES ('42', ' 怒族');
+INSERT INTO `nation` VALUES ('43', ' 乌孜别克族');
+INSERT INTO `nation` VALUES ('44', ' 俄罗斯族');
+INSERT INTO `nation` VALUES ('45', ' 鄂温克族');
+INSERT INTO `nation` VALUES ('46', ' 崩龙族');
+INSERT INTO `nation` VALUES ('47', ' 保安族');
+INSERT INTO `nation` VALUES ('48', ' 裕固族');
+INSERT INTO `nation` VALUES ('49', ' 京族');
+INSERT INTO `nation` VALUES ('50', ' 塔塔尔族');
+INSERT INTO `nation` VALUES ('51', ' 独龙族');
+INSERT INTO `nation` VALUES ('52', ' 鄂伦春族');
+INSERT INTO `nation` VALUES ('53', ' 赫哲族');
+INSERT INTO `nation` VALUES ('54', ' 门巴族');
+INSERT INTO `nation` VALUES ('55', ' 珞巴族');
+INSERT INTO `nation` VALUES ('56', ' 基诺族');
+INSERT INTO `nation` VALUES ('57', ' 其他');
 
 -- ----------------------------
 -- Table structure for role
@@ -3509,14 +3586,19 @@ CREATE TABLE `user` (
   `ADDRESS1` int(11) DEFAULT NULL,
   `ADDRESS2` int(11) DEFAULT NULL,
   `ADDRESS3` int(11) DEFAULT NULL,
-  `ADDRESS4` int(11) DEFAULT NULL,
+  `ADDRESS4` varchar(50) DEFAULT NULL,
   `EMAIL` varchar(255) DEFAULT NULL,
   `WECHAT` varchar(255) DEFAULT NULL,
   `SEX` int(1) DEFAULT NULL,
-  `NATION` varchar(2) DEFAULT NULL,
+  `NATION` int(11) DEFAULT NULL,
+  `CREATE_DATE` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `UPDATE_DATE` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `CREATOR` varchar(255) DEFAULT NULL,
+  `MODIFIER` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('9C1E37A2366E3441B1947F6364541212', '18645636597', '231025198807145532', '2', '52', '512', '沙河北大桥', '18645636597@163.com', '18645636597', '1', '1', '2020-06-19 12:34:39', '2020-06-19 12:34:39', null, null);
