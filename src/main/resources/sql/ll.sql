@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50647
 File Encoding         : 65001
 
-Date: 2020-06-19 15:12:48
+Date: 2020-06-20 15:38:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city` (
   `ID` int(11) NOT NULL DEFAULT '0',
   `PID` int(11) DEFAULT NULL,
-  `CITY_NAME` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `CITY_NAME` varchar(7) CHARACTER SET utf8 DEFAULT NULL,
   `TYPE` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -2129,7 +2129,7 @@ INSERT INTO `city` VALUES ('2096', '247', '南芬区', '3');
 INSERT INTO `city` VALUES ('2097', '247', '桓仁', '3');
 INSERT INTO `city` VALUES ('2098', '248', '双塔区', '3');
 INSERT INTO `city` VALUES ('2099', '248', '龙城区', '3');
-INSERT INTO `city` VALUES ('2100', '248', '喀喇沁左翼蒙古族自治县', '3');
+INSERT INTO `city` VALUES ('2100', '248', '喀喇沁左翼蒙古', '3');
 INSERT INTO `city` VALUES ('2101', '248', '北票市', '3');
 INSERT INTO `city` VALUES ('2102', '248', '凌源市', '3');
 INSERT INTO `city` VALUES ('2103', '248', '朝阳县', '3');
@@ -2218,7 +2218,7 @@ INSERT INTO `city` VALUES ('2185', '261', '石拐区', '3');
 INSERT INTO `city` VALUES ('2186', '261', '白云矿区', '3');
 INSERT INTO `city` VALUES ('2187', '261', '土默特右旗', '3');
 INSERT INTO `city` VALUES ('2188', '261', '固阳县', '3');
-INSERT INTO `city` VALUES ('2189', '261', '达尔罕茂明安联合旗', '3');
+INSERT INTO `city` VALUES ('2189', '261', '达尔罕茂明安联', '3');
 INSERT INTO `city` VALUES ('2190', '262', '红山区', '3');
 INSERT INTO `city` VALUES ('2191', '262', '元宝山区', '3');
 INSERT INTO `city` VALUES ('2192', '262', '松山区', '3');
@@ -2354,7 +2354,7 @@ INSERT INTO `city` VALUES ('2321', '280', '天峻县', '3');
 INSERT INTO `city` VALUES ('2322', '281', '同仁县', '3');
 INSERT INTO `city` VALUES ('2323', '281', '尖扎县', '3');
 INSERT INTO `city` VALUES ('2324', '281', '泽库县', '3');
-INSERT INTO `city` VALUES ('2325', '281', '河南蒙古族自治县', '3');
+INSERT INTO `city` VALUES ('2325', '281', '河南蒙古族自治', '3');
 INSERT INTO `city` VALUES ('2326', '282', '玉树县', '3');
 INSERT INTO `city` VALUES ('2327', '282', '杂多县', '3');
 INSERT INTO `city` VALUES ('2328', '282', '称多县', '3');
@@ -3463,8 +3463,9 @@ CREATE TABLE `login` (
 -- ----------------------------
 -- Records of login
 -- ----------------------------
-INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541112', '陈永斌', 'chenyb', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', null, '2020-06-18 15:55:44', null, '2020-06-18 15:55:44', '2020-06-18 16:55:50', '2020-06-18 15:55:44', '1');
-INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541212', 'TEST', 'test', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', null, '2020-06-18 15:55:46', null, '2020-06-18 15:55:46', '2020-06-18 16:03:55', '2020-06-18 15:55:46', null);
+INSERT INTO `login` VALUES ('4028b24272cd68730172cd6cf66b0000', '孟晓栋', 'mengxd', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', '--', '2020-06-20 00:32:50', null, null, '2020-06-20 00:34:11', null, null);
+INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541112', null, null, '177b5b005cf2cdbb788ffec1dc4d797b', null, null, null, null, null, null, null, null, null);
+INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541212', 'TEST', 'test', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', null, '2020-06-18 15:55:46', null, '2020-06-18 15:55:46', '2020-06-19 17:27:15', '2020-06-18 15:55:46', null);
 
 -- ----------------------------
 -- Table structure for login_roles
@@ -3486,7 +3487,7 @@ CREATE TABLE `login_roles` (
 -- ----------------------------
 INSERT INTO `login_roles` VALUES ('9C1E27A2366E3441B1947F136454122S', '9C1E37A2366E3441B1947F6364541212', '9C1E37A2366E3441B1947F6364541117', '2020-06-19 14:06:18', '2020-06-19 14:06:18', null, null);
 INSERT INTO `login_roles` VALUES ('9C1E27A2366E3441B1947F636454122S', '9C1E37A2366E3441B1947F6364541212', '1C1E37A2366E3441B1947F6364541212', '2020-06-19 14:02:15', '2020-06-19 14:02:15', null, null);
-INSERT INTO `login_roles` VALUES ('9C2E37A2366E3441B1947F6364541117', '9C1E37A2366E3441B1947F6364541112', '9C1E37A2366E3441B1947F6364541117', '2020-06-19 14:01:37', '2020-06-19 14:01:37', null, null);
+INSERT INTO `login_roles` VALUES ('a2a0cc1820da4265a6365c540783f377', '72621113ce6a4f90882a1b93ca023f77', '96e69e789fd640c59b2107383950079d', '2020-06-20 00:32:50', null, '--', null);
 
 -- ----------------------------
 -- Table structure for nation
@@ -3566,14 +3567,19 @@ DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `ID` varchar(32) NOT NULL,
   `NAME` varchar(255) DEFAULT NULL,
+  `CREATE_DATE` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `UPDATE_DATE` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `CREATOR` varchar(255) DEFAULT NULL,
+  `MODIFIER` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
-INSERT INTO `role` VALUES ('1C1E37A2366E3441B1947F6364541212', 'ppx');
-INSERT INTO `role` VALUES ('9C1E37A2366E3441B1947F6364541117', 'admin');
+INSERT INTO `role` VALUES ('1C1E37A2366E3441B1947F6364541212', 'HONORABLE', null, null, null, null);
+INSERT INTO `role` VALUES ('96e69e789fd640c59b2107383950079d', 'ORDINARY', null, null, null, null);
+INSERT INTO `role` VALUES ('9C1E37A2366E3441B1947F6364541117', 'ADMIN', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for user
@@ -3601,4 +3607,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('9C1E37A2366E3441B1947F6364541212', '18645636597', '231025198807145532', '2', '52', '512', '沙河北大桥', '18645636597@163.com', '18645636597', '1', '1', '2020-06-19 12:34:39', '2020-06-19 12:34:39', null, null);
+INSERT INTO `user` VALUES ('72621113ce6a4f90882a1b93ca023f77', '17600907430', '231025199505305512', '2', '52', '512', '沙河北大桥', 'mengxiaodong@163.com', '17600907430', '0', '1', '2020-06-20 00:32:50', null, '--', null);
+INSERT INTO `user` VALUES ('9C1E37A2366E3441B1947F6364541112', '18645636597', '231025198807145532', '2', '52', '512', '沙河北大桥', '18645636597@163.com', '18645636597', '1', '1', '2020-06-20 00:39:02', '2020-06-20 00:39:02', '9C1E37A2366E3441B1947F6364541112', null);

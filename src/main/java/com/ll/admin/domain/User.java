@@ -28,13 +28,13 @@ public class User extends EntityVo implements Serializable {
     private String identity;
 
     @Column(name = "ADDRESS1")
-    private String address1;
+    private Integer address1;
 
     @Column(name = "ADDRESS2")
-    private String address2;
+    private Integer address2;
 
     @Column(name = "ADDRESS3")
-    private String address3;
+    private Integer address3;
 
     @Column(name = "ADDRESS4")
     private String address4;
@@ -46,10 +46,11 @@ public class User extends EntityVo implements Serializable {
     private String wechat;
 
     @Column(name = "SEX")
-    private String sex;
+    private Integer sex;
 
     @Column(name = "NATION")
-    private String nation;
+    private Integer nation;
+
 
     public String getId() {
         return id;
@@ -75,27 +76,27 @@ public class User extends EntityVo implements Serializable {
         this.identity = identity;
     }
 
-    public String getAddress1() {
+    public Integer getAddress1() {
         return address1;
     }
 
-    public void setAddress1(String address1) {
+    public void setAddress1(Integer address1) {
         this.address1 = address1;
     }
 
-    public String getAddress2() {
+    public Integer getAddress2() {
         return address2;
     }
 
-    public void setAddress2(String address2) {
+    public void setAddress2(Integer address2) {
         this.address2 = address2;
     }
 
-    public String getAddress3() {
+    public Integer getAddress3() {
         return address3;
     }
 
-    public void setAddress3(String address3) {
+    public void setAddress3(Integer address3) {
         this.address3 = address3;
     }
 
@@ -123,19 +124,19 @@ public class User extends EntityVo implements Serializable {
         this.wechat = wechat;
     }
 
-    public String getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 
-    public String getNation() {
+    public Integer getNation() {
         return nation;
     }
 
-    public void setNation(String nation) {
+    public void setNation(Integer nation) {
         this.nation = nation;
     }
 }

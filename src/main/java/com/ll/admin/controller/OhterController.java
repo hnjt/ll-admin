@@ -2,7 +2,6 @@ package com.ll.admin.controller;
 
 import com.commons.ResultVo;
 import com.ll.admin.service.OtherService;
-import com.ll.admin.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
