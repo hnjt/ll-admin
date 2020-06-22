@@ -38,19 +38,21 @@ public class CustomLogoutService implements LogoutSuccessHandler {
                                 Authentication authentication)
             throws IOException, ServletException {
 
-        String userName = authentication.getName();
-        Date newDate = new Date();
-        WebAuthenticationDetails details =(WebAuthenticationDetails) authentication.getDetails();
-        String remoteAddress = details.getRemoteAddress();
+        if (null != authentication){
+            String userName = authentication.getName();
+            Date newDate = new Date();
+            WebAuthenticationDetails details =(WebAuthenticationDetails) authentication.getDetails();
+            String remoteAddress = details.getRemoteAddress();
 
-        Login login = loginRepository.findByUsername( authentication.getName() );
+            Login login = loginRepository.findByUsername( authentication.getName() );
 
-        login.setLogoutTime( new Date(  ) );//退出时间
+            login.setLogoutTime( new Date(  ) );//退出时间
 
-        log.info(
-                "**************************** 帐户：{}     在 #-{}-#   使用   *** {} ***   退出系统 ****************************",
-                userName,newDate,remoteAddress
-        );
+            log.info(
+                    "**************************** 帐户：{}     在 #-{}-#   使用   *** {} ***   退出系统 ****************************",
+                    userName,newDate,remoteAddress
+            );
+        }
         response.sendRedirect( contextPath + loginUrl );
     }
 }

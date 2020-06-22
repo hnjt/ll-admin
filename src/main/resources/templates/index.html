@@ -4,8 +4,17 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Index</title>
+    <script th:src="@{/js/jquery-3.4.0.js}"></script>
 </head>
 <body>
+<button id="btn">点击事件测试</button>
+<script type="text/javascript">
+    var btn = document.getElementById("btn");
+    btn.onclick = function(){
+        alert("生效！");
+    }
+</script>
+<img th:src="@{/static/image/timg.jpg}" height="688" width="1024"/>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">

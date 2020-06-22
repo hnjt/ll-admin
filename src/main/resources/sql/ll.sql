@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50647
 File Encoding         : 65001
 
-Date: 2020-06-20 15:38:45
+Date: 2020-06-22 12:47:45
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3464,8 +3464,11 @@ CREATE TABLE `login` (
 -- Records of login
 -- ----------------------------
 INSERT INTO `login` VALUES ('4028b24272cd68730172cd6cf66b0000', '孟晓栋', 'mengxd', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', '--', '2020-06-20 00:32:50', null, null, '2020-06-20 00:34:11', null, null);
-INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541112', null, null, '177b5b005cf2cdbb788ffec1dc4d797b', null, null, null, null, null, null, null, null, null);
-INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541212', 'TEST', 'test', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', null, '2020-06-18 15:55:46', null, '2020-06-18 15:55:46', '2020-06-19 17:27:15', '2020-06-18 15:55:46', null);
+INSERT INTO `login` VALUES ('4028b24272d73fb70172d742e70d0000', '张飞', 'zhangfei', 'd3f0574edc75e8705b9e2de50c1980d1', '127.0.0.1', '200', '--', '2020-06-21 22:23:05', null, null, '2020-06-21 22:23:41', null, null);
+INSERT INTO `login` VALUES ('8b80a24c72d9942f0172d9950f220000', '拦截器', 'ljq', '5b06db4f98ec906a859ecdccfc069d88', null, '200', '--', '2020-06-22 09:12:04', null, null, null, null, null);
+INSERT INTO `login` VALUES ('8b80a24c72d9f2940172d9f801ea0000', '刘能', 'liuneng', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', '--', '2020-06-22 11:00:09', null, null, '2020-06-22 11:03:21', null, null);
+INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541112', '陈永斌', 'chenyb', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', null, '2020-06-21 21:48:16', null, '2020-06-21 21:48:16', '2020-06-22 12:46:06', '2020-06-21 21:48:16', null);
+INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541212', 'TEST', 'test', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', null, '2020-06-18 15:55:46', null, '2020-06-18 15:55:46', '2020-06-21 19:57:28', '2020-06-18 15:55:46', null);
 
 -- ----------------------------
 -- Table structure for login_roles
@@ -3485,9 +3488,11 @@ CREATE TABLE `login_roles` (
 -- ----------------------------
 -- Records of login_roles
 -- ----------------------------
-INSERT INTO `login_roles` VALUES ('9C1E27A2366E3441B1947F136454122S', '9C1E37A2366E3441B1947F6364541212', '9C1E37A2366E3441B1947F6364541117', '2020-06-19 14:06:18', '2020-06-19 14:06:18', null, null);
-INSERT INTO `login_roles` VALUES ('9C1E27A2366E3441B1947F636454122S', '9C1E37A2366E3441B1947F6364541212', '1C1E37A2366E3441B1947F6364541212', '2020-06-19 14:02:15', '2020-06-19 14:02:15', null, null);
-INSERT INTO `login_roles` VALUES ('a2a0cc1820da4265a6365c540783f377', '72621113ce6a4f90882a1b93ca023f77', '96e69e789fd640c59b2107383950079d', '2020-06-20 00:32:50', null, '--', null);
+INSERT INTO `login_roles` VALUES ('77169f63eaec44619ad672b9a586caca', 'f1ab78fa4d4443548d616d5d10624a13', '96e69e789fd640c59b2107383950079d', '2020-06-22 09:12:04', null, '--', null);
+INSERT INTO `login_roles` VALUES ('7737625f046948f8be6f83f8468d5647', 'd9c936e174d940a69a1ddc4ed4f7e6f4', '96e69e789fd640c59b2107383950079d', '2020-06-21 22:23:05', null, '--', null);
+INSERT INTO `login_roles` VALUES ('9C1E27A2366E3441B1947F136454122S', '9C1E37A2366E3441B1947F6364541112', '1C1E37A2366E3441B1947F6364541212', '2020-06-21 21:49:12', '2020-06-21 21:49:12', null, null);
+INSERT INTO `login_roles` VALUES ('9C1E27A2366E3441B1947F636454122S', '9C1E37A2366E3441B1947F6364541112', '96e69e789fd640c59b2107383950079d', '2020-06-21 21:49:17', '2020-06-21 21:49:17', null, null);
+INSERT INTO `login_roles` VALUES ('a2a0cc1820da4265a6365c540783f377', '9C1E37A2366E3441B1947F6364541112', '9C1E37A2366E3441B1947F6364541117', '2020-06-21 21:49:19', '2020-06-21 21:49:19', '--', null);
 
 -- ----------------------------
 -- Table structure for nation
@@ -3608,4 +3613,7 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('72621113ce6a4f90882a1b93ca023f77', '17600907430', '231025199505305512', '2', '52', '512', '沙河北大桥', 'mengxiaodong@163.com', '17600907430', '0', '1', '2020-06-20 00:32:50', null, '--', null);
+INSERT INTO `user` VALUES ('96870dfec2ed4d0d8e9b1f4c2cc97ecf', null, '111111', null, null, null, null, null, null, null, null, '2020-06-22 11:00:09', null, '--', null);
 INSERT INTO `user` VALUES ('9C1E37A2366E3441B1947F6364541112', '18645636597', '231025198807145532', '2', '52', '512', '沙河北大桥', '18645636597@163.com', '18645636597', '1', '1', '2020-06-20 00:39:02', '2020-06-20 00:39:02', '9C1E37A2366E3441B1947F6364541112', null);
+INSERT INTO `user` VALUES ('d9c936e174d940a69a1ddc4ed4f7e6f4', null, '123123', null, null, null, null, null, null, null, '1', '2020-06-21 22:23:05', null, '--', null);
+INSERT INTO `user` VALUES ('f1ab78fa4d4443548d616d5d10624a13', null, null, null, null, null, null, null, null, null, null, '2020-06-22 09:12:04', null, '--', null);
