@@ -4,7 +4,9 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-
+/**
+ * 对称加密
+ */
 public class EncryptionUtil {
 
     @SuppressWarnings("unused")

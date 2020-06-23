@@ -2,7 +2,7 @@ package com.ll.admin.domain;
 
 import com.commons.EntityVo;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.utils.IpUtils;
+import com.utils.EntityValidator;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,6 +12,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * 登录信息
+ */
 @Entity
 @Table
 public class Login extends EntityVo implements Serializable,UserDetails{
@@ -73,6 +76,8 @@ public class Login extends EntityVo implements Serializable,UserDetails{
     }
 
     public void setName(String name) {
+        if (!EntityValidator.isChinese(name))
+            throw new RuntimeException( "需要使用1-9字中文名称" );
         this.name = name;
     }
 
@@ -82,6 +87,8 @@ public class Login extends EntityVo implements Serializable,UserDetails{
     }
 
     public void setUsername(String username) {
+        if (!EntityValidator.isUserName(username))
+            throw new RuntimeException( "帐户不符合规定" );
         this.username = username;
     }
 

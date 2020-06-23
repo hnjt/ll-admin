@@ -80,7 +80,6 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
 
-
 ######################################################################
 #                       -- final-value --                           #
 ######################################################################
@@ -91,5 +90,3 @@ security-fig:
   error-url:  /loginFail
   logout-url: /signout
   swagger-url:  /doc
-
-
