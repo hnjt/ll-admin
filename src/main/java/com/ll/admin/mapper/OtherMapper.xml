@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ll.admin.mapper.OtherMapper">
+
+    <sql id="nation">
+        n.ID,
+        n.NATION_NAME
+    </sql>
+
+    <sql id="city">
+        c.ID,
+        c.PID,
+        c.CITY_NAME,
+        c.TYPE
+    </sql>
+
+    <select id="findAllCitys" resultType="java.util.Map">
+        SELECT
+        <include refid="city"></include>
+        FROM city c
+        <where>
+            <choose>
+                <when test="pid != '' and pid != null">
+                    c.PID = #{pid}
+                </when>
+                <otherwise>
+                    c.TYPE = 1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="findAllNations" resultType="java.util.Map">
+        SELECT
+        <include refid="nation"></include>
+        FROM nation n
+        <where>
+            <if test="id != '' and id != null">
+                n.ID = #{id}
+            </if>
+        </where>
+    </select>
+</mapper>

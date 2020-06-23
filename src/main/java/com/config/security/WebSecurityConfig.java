@@ -42,9 +42,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http
+                .portMapper(  )
+                .http( 80 )
+                .mapsTo( 443 )
+                .and()
+                .authorizeRequests()
+                .antMatchers( "/sys/**" ).permitAll()
+                .antMatchers( "/public/**" ).permitAll()
+                .antMatchers( "/static/**" ).permitAll()
+                .antMatchers( "/templates/**" ).permitAll()
                 .anyRequest().authenticated()
                 .and()
+                .csrf().disable()
                 .formLogin()
                 .loginPage( loginUrl )//登录页面
                 .loginProcessingUrl(loginProcessingUrl)//登录action 提交地址
@@ -63,7 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         //设置静态资源不要拦截
-        web.ignoring().antMatchers("/js/**","/cs/**","/images/**","/images/**");
+        web.ignoring().antMatchers( "/public/**","/static/**","/templates/**");
     }
 
     @Autowired

@@ -1,5 +1,7 @@
 package com.ll.admin.domain;
 
+import com.commons.EntityVo;
+
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -9,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table
-public class Role implements Serializable {
+public class Role extends EntityVo implements Serializable {
 
     private static final long serialVersionUID = 2L;
 
