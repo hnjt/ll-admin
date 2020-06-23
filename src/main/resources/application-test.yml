@@ -1,5 +1,5 @@
 ######################################################################
-#                             -- test --                              #
+#                             -- dve --                              #
 ######################################################################
 ######################################################################
 #                          -- spring --                              #
@@ -9,9 +9,9 @@ spring:
     name: druidDataSource
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/ll?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false
+    url: jdbc:mysql://127.0.0.1:3306/ll?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
-    password:
+    password: root
     hikari:
       schema: classpath:sql
 

@@ -32,9 +32,9 @@ public class DictionaryServiceImpl extends BaseService implements DictionaryServ
                 .filter( d ->{
                     if(StringUtils.isBlank( code ))
                         return true;//空值则不过滤
-                    else if ("NULL".equals( code.toUpperCase() )  && null == d.getpCode())
+                    else if ("NULL".equals( code.toUpperCase() )  && null == d.getPCode())
                         return true;//字符串“NULL”,则遍历所有顶级字典
-                    else if (null != d.getpCode() && code.toUpperCase().equals( d.getpCode().toUpperCase() ))
+                    else if (null != d.getPCode() && code.toUpperCase().equals( d.getPCode().toUpperCase() ))
                         return true;//正常传值则返回下级数据结构
                     return false;
                 } )
@@ -77,7 +77,7 @@ public class DictionaryServiceImpl extends BaseService implements DictionaryServ
             dictionary.setCode( code );
         String pCode = params.getOrDefault( "pCode", null );
         if (StringUtils.isNotBlank( pCode ))
-            dictionary.setpCode( pCode );
+            dictionary.setPCode( pCode );
         String orderNoStr = params.getOrDefault( "orderNo", null );
         Integer orderNo = StringUtils.isNotBlank( orderNoStr ) ? Integer.valueOf( orderNoStr ) : null;
         if (null != orderNo)
@@ -112,10 +112,15 @@ public class DictionaryServiceImpl extends BaseService implements DictionaryServ
         String remarks = params.getOrDefault( "remarks", null );
         String creator = params.getOrDefault( "creator", null );
 
+        if (this.isCodeExist(code))
+            throw new RuntimeException("CODE码已存在");
+        /*if (!this.isPCodeExist(pCode))
+            throw new RuntimeException("PCODE码不存在");*/
+
         Dictionary dictionary = new Dictionary();
         dictionary.setId( CommonsUtil.getUUID() );
         dictionary.setCode( code );
-        dictionary.setpCode( pCode );
+        dictionary.setPCode( pCode );
         dictionary.setOrderNo( orderNo );
         dictionary.setName( name );
         dictionary.setIsPermitDelete( isPermitDelete );
@@ -124,4 +129,20 @@ public class DictionaryServiceImpl extends BaseService implements DictionaryServ
         dictionary.setCreator( creator );
         return this.dictionaryRepository.save( dictionary );
     }
+
+    private Boolean isCodeExist(String code){
+        Boolean result = false;
+        List<Dictionary> dictionarys = this.dictionaryRepository.findAllByCode(code);
+        if (null != dictionarys && dictionarys.size() > 0)
+            result = true;
+        return result;
+    }
+
+    /*private Boolean isPCodeExist(String pCode){
+        Boolean result = false;
+        List<Dictionary> dictionarys = this.dictionaryRepository.findAllByPCode(pCode);
+        if (null != dictionarys && dictionarys.size() > 0)
+            result = true;
+        return result;
+    }*/
 }

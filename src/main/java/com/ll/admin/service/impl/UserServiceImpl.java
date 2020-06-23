@@ -60,7 +60,7 @@ public class UserServiceImpl extends BaseService implements UserService {
         String password = params.getOrDefault( "password", null );
         String identity = params.getOrDefault( "identity", null );
 
-        if (null != this.loginRepository.findByUsername( username ))
+        if (this.isUserNameExist(username))
             throw new RuntimeException( "帐户已存在" );
 
         //可选条件
@@ -96,7 +96,6 @@ public class UserServiceImpl extends BaseService implements UserService {
                 userRoles.setId( CommonsUtil.getUUID() );
                 userRoles.setLoginId( userId );
                 userRoles.setRolesId( role.getId() );
-                userRoles.setRolesId( role.getId() );
                 userRoles.setCreateTime( newDate );
                 userRoles.setCreator( "--" );
                 this.userRolesRepository.save( userRoles );
@@ -121,6 +120,15 @@ public class UserServiceImpl extends BaseService implements UserService {
         user.setCreateTime( newDate );
         userRepository.save( user );
         return save;
+    }
+
+    /**
+     * 校验账户是否存在
+     * @param username
+     * @return
+     */
+    public Boolean isUserNameExist(String username){
+        return null != this.loginRepository.findByUsername( username );
     }
 
     @Override

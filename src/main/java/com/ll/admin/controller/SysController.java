@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
+/**
+ * 系统接口
+ * 配置的接口可以匿名访问
+ */
 @Slf4j
 @Api(description = "系统")
 @RequestMapping("/sys")

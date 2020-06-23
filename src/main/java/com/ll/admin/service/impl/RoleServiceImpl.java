@@ -46,6 +46,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
         Role role = this.roleRepository.findById( id ).orElse( new Role() );
         if (null == role && StringUtils.isBlank( role.getId() ))
             throw new RuntimeException( "数据不存在" );
+        this.isRoleNameExist(name);
 
         role.setName( name );
         role.setUpdateTime( new Date(  ) );
@@ -59,8 +60,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
     private Boolean save(String name,String creator) {
 
         Boolean result = false;
-        if (null != this.roleRepository.getRoleByName( name ))
-            throw new RuntimeException( "角色名称已存在" );
+        this.isRoleNameExist(name);
 
         Role role = new Role();
         role.setId( CommonsUtil.getUUID() );
@@ -71,6 +71,16 @@ public class RoleServiceImpl extends BaseService implements RoleService {
         if (null != this.roleRepository.save( role ))
             result = true;
         return result;
+    }
+
+    /**
+     * 校验角色名称是否唯一
+     * 已经存在则会抛出异常
+     * @param name
+     */
+    private void isRoleNameExist(String name){
+        if (null != this.roleRepository.getRoleByName( name ))
+            throw new RuntimeException( "角色名称已存在" );
     }
 
     @Override

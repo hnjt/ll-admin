@@ -53,11 +53,11 @@ public class Dictionary extends EntityVo implements Serializable {
         this.code = StringUtils.isNotEmpty( code )?code.toUpperCase():code;
     }
 
-    public String getpCode() {
+    public String getPCode() {
         return pCode;
     }
 
-    public void setpCode(String pCode) {
+    public void setPCode(String pCode) {
         this.pCode = StringUtils.isNotEmpty( pCode )?pCode.toUpperCase():pCode;
     }
 

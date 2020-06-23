@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
-@Api(description = "其它接口支持")
+@Api(description = "其它[城市、民族]")
 @RequestMapping("/other")
 @RestController
 public class OhterController {
