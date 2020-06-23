@@ -35,7 +35,7 @@ public class SysController extends BaseController {
             @ApiParam(required = false, name = "phone", value = "电话") @RequestParam(name = "phone", required = false) String phone,
             @ApiParam(required = false, name = "email", value = "邮箱") @RequestParam(name = "email", required = false) String email,
             @ApiParam(required = false, name = "wechat", value = "微信") @RequestParam(name = "wechat", required = false) String wechat,
-            @ApiParam(required = true, name = "identity", value = "身份证号") @RequestParam(name = "identity", required = true) String identity,
+            @ApiParam(required = false, name = "identity", value = "身份证号") @RequestParam(name = "identity", required = false) String identity,
             @ApiParam(required = false, name = "nation", value = "民族[int类型]") @RequestParam(name = "nation", required = false) String nation,
             @ApiParam(required = false, name = "sex", value = "性别[int类型]") @RequestParam(name = "sex", required = false) String sex,
             @ApiParam(required = false, name = "address1", value = "省份/直辖市") @RequestParam(name = "address1", required = false) String address1,

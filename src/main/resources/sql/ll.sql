@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50647
 File Encoding         : 65001
 
-Date: 2020-06-22 12:47:45
+Date: 2020-06-23 17:19:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3440,6 +3440,34 @@ INSERT INTO `city` VALUES ('3407', '3401', '肥东县', '3');
 INSERT INTO `city` VALUES ('3408', '3401', '肥西县', '3');
 
 -- ----------------------------
+-- Table structure for dictionary
+-- ----------------------------
+DROP TABLE IF EXISTS `dictionary`;
+CREATE TABLE `dictionary` (
+  `ID` varchar(32) NOT NULL,
+  `CODE` varchar(40) DEFAULT NULL,
+  `P_CODE` varchar(32) DEFAULT NULL,
+  `ORDER_NO` int(11) DEFAULT NULL,
+  `NAME` varchar(40) DEFAULT NULL,
+  `IS_PERMIT_DELETE` int(1) DEFAULT NULL COMMENT '是否允许删除（1：是；0：否）',
+  `REMARKS` varchar(255) DEFAULT NULL COMMENT '备注',
+  `CREATE_DATE` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `UPDATE_DATE` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `CREATOR` varchar(32) DEFAULT NULL,
+  `MODIFIER` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of dictionary
+-- ----------------------------
+INSERT INTO `dictionary` VALUES ('8b80a24c72dec5c20172dec5d70a0000', 'FUN', null, '1', '权限操作', '0', '操作权限数据字典', '2020-06-23 09:23:27', null, null, null);
+INSERT INTO `dictionary` VALUES ('8b80a24c72dec5c20172dec5d7650001', 'FUN_ADD', 'FUN', '1', '新增', '0', '新增权限操作', '2020-06-23 09:36:55', '2020-06-23 09:36:55', null, null);
+INSERT INTO `dictionary` VALUES ('8b80a24c72dec5c20172dec5d7b70002', 'FUN_DEL', 'FUN', '2', '删除', '0', '删除权限操作', '2020-06-23 09:36:57', '2020-06-23 09:36:57', null, null);
+INSERT INTO `dictionary` VALUES ('8b80a24c72dec5c20172dec5d80a0003', 'FUN_EDIT', 'FUN', '3', '编辑', '0', '编辑权限操作', '2020-06-23 09:36:58', '2020-06-23 09:36:58', null, null);
+INSERT INTO `dictionary` VALUES ('8b80a24c72dec5c20172dec5d8330004', 'FUN_QUE', 'FUN', '4', '查询', '0', '查询权限操作', '2020-06-23 09:37:00', '2020-06-23 09:37:00', null, null);
+
+-- ----------------------------
 -- Table structure for login
 -- ----------------------------
 DROP TABLE IF EXISTS `login`;
@@ -3465,9 +3493,9 @@ CREATE TABLE `login` (
 -- ----------------------------
 INSERT INTO `login` VALUES ('4028b24272cd68730172cd6cf66b0000', '孟晓栋', 'mengxd', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', '--', '2020-06-20 00:32:50', null, null, '2020-06-20 00:34:11', null, null);
 INSERT INTO `login` VALUES ('4028b24272d73fb70172d742e70d0000', '张飞', 'zhangfei', 'd3f0574edc75e8705b9e2de50c1980d1', '127.0.0.1', '200', '--', '2020-06-21 22:23:05', null, null, '2020-06-21 22:23:41', null, null);
-INSERT INTO `login` VALUES ('8b80a24c72d9942f0172d9950f220000', '拦截器', 'ljq', '5b06db4f98ec906a859ecdccfc069d88', null, '200', '--', '2020-06-22 09:12:04', null, null, null, null, null);
 INSERT INTO `login` VALUES ('8b80a24c72d9f2940172d9f801ea0000', '刘能', 'liuneng', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', '--', '2020-06-22 11:00:09', null, null, '2020-06-22 11:03:21', null, null);
-INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541112', '陈永斌', 'chenyb', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', null, '2020-06-21 21:48:16', null, '2020-06-21 21:48:16', '2020-06-22 12:46:06', '2020-06-21 21:48:16', null);
+INSERT INTO `login` VALUES ('8b80a24c72e02c320172e033fb4e0001', '刘备', 'liubei', '5b06db4f98ec906a859ecdccfc069d88', null, '200', '--', '2020-06-23 16:03:23', null, null, null, null, null);
+INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541112', '陈永斌', 'chenyb', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', null, '2020-06-21 21:48:16', null, '2020-06-21 21:48:16', '2020-06-23 17:15:41', '2020-06-21 21:48:16', null);
 INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541212', 'TEST', 'test', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', null, '2020-06-18 15:55:46', null, '2020-06-18 15:55:46', '2020-06-21 19:57:28', '2020-06-18 15:55:46', null);
 
 -- ----------------------------
@@ -3493,6 +3521,29 @@ INSERT INTO `login_roles` VALUES ('7737625f046948f8be6f83f8468d5647', 'd9c936e17
 INSERT INTO `login_roles` VALUES ('9C1E27A2366E3441B1947F136454122S', '9C1E37A2366E3441B1947F6364541112', '1C1E37A2366E3441B1947F6364541212', '2020-06-21 21:49:12', '2020-06-21 21:49:12', null, null);
 INSERT INTO `login_roles` VALUES ('9C1E27A2366E3441B1947F636454122S', '9C1E37A2366E3441B1947F6364541112', '96e69e789fd640c59b2107383950079d', '2020-06-21 21:49:17', '2020-06-21 21:49:17', null, null);
 INSERT INTO `login_roles` VALUES ('a2a0cc1820da4265a6365c540783f377', '9C1E37A2366E3441B1947F6364541112', '9C1E37A2366E3441B1947F6364541117', '2020-06-21 21:49:19', '2020-06-21 21:49:19', '--', null);
+
+-- ----------------------------
+-- Table structure for menu
+-- ----------------------------
+DROP TABLE IF EXISTS `menu`;
+CREATE TABLE `menu` (
+  `ID` varchar(32) NOT NULL,
+  `NAME` varchar(64) DEFAULT NULL,
+  `MENU_URL` varchar(256) DEFAULT NULL,
+  `PID` varchar(32) DEFAULT NULL,
+  `ORDER_NO` int(9) DEFAULT NULL,
+  `CREATE_DATE` datetime DEFAULT NULL,
+  `CREATOR` varchar(32) DEFAULT NULL,
+  `MODIFY_DATE` datetime DEFAULT NULL,
+  `MODIFIER` varchar(32) DEFAULT NULL,
+  `ICON` varchar(128) DEFAULT NULL,
+  `PATH` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`ID`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- ----------------------------
+-- Records of menu
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for nation
@@ -3583,6 +3634,7 @@ CREATE TABLE `role` (
 -- Records of role
 -- ----------------------------
 INSERT INTO `role` VALUES ('1C1E37A2366E3441B1947F6364541212', 'HONORABLE', null, null, null, null);
+INSERT INTO `role` VALUES ('755f1ab570eb490ca3eda18f6d2cf605', '真的是测试角色', '2020-06-23 15:25:21', '2020-06-23 15:26:36', '9C1E37A2366E3441B1947F6364541112', '9C1E37A2366E3441B1947F6364541112');
 INSERT INTO `role` VALUES ('96e69e789fd640c59b2107383950079d', 'ORDINARY', null, null, null, null);
 INSERT INTO `role` VALUES ('9C1E37A2366E3441B1947F6364541117', 'ADMIN', null, null, null, null);
 
@@ -3604,16 +3656,20 @@ CREATE TABLE `user` (
   `NATION` int(11) DEFAULT NULL,
   `CREATE_DATE` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `UPDATE_DATE` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `CREATOR` varchar(255) DEFAULT NULL,
-  `MODIFIER` varchar(255) DEFAULT NULL,
+  `CREATOR` varchar(32) DEFAULT NULL,
+  `MODIFIER` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('', null, null, '2', '52', '512', null, null, null, null, null, null, null, null, null);
 INSERT INTO `user` VALUES ('72621113ce6a4f90882a1b93ca023f77', '17600907430', '231025199505305512', '2', '52', '512', '沙河北大桥', 'mengxiaodong@163.com', '17600907430', '0', '1', '2020-06-20 00:32:50', null, '--', null);
+INSERT INTO `user` VALUES ('8b80a24c72e02c320172e033fb4e0001', null, null, '2', '52', '512', null, null, null, null, null, null, null, null, null);
 INSERT INTO `user` VALUES ('96870dfec2ed4d0d8e9b1f4c2cc97ecf', null, '111111', null, null, null, null, null, null, null, null, '2020-06-22 11:00:09', null, '--', null);
 INSERT INTO `user` VALUES ('9C1E37A2366E3441B1947F6364541112', '18645636597', '231025198807145532', '2', '52', '512', '沙河北大桥', '18645636597@163.com', '18645636597', '1', '1', '2020-06-20 00:39:02', '2020-06-20 00:39:02', '9C1E37A2366E3441B1947F6364541112', null);
+INSERT INTO `user` VALUES ('9ef024e0c98d439cb4e5995ae2080dc9', null, null, null, null, null, null, null, null, null, null, '2020-06-23 15:55:17', null, '--', null);
 INSERT INTO `user` VALUES ('d9c936e174d940a69a1ddc4ed4f7e6f4', null, '123123', null, null, null, null, null, null, null, '1', '2020-06-21 22:23:05', null, '--', null);
+INSERT INTO `user` VALUES ('d9e65f207c3a49ca9b31cd81355ec7e2', null, null, null, null, null, null, null, null, null, null, '2020-06-23 16:03:23', null, '--', null);
 INSERT INTO `user` VALUES ('f1ab78fa4d4443548d616d5d10624a13', null, null, null, null, null, null, null, null, null, null, '2020-06-22 09:12:04', null, '--', null);

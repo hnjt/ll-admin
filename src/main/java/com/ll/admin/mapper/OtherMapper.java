@@ -10,8 +10,8 @@ import java.util.Map;
 public interface OtherMapper {
 
     //城市查询
-    List<Map<String,Object>> findAllCitys(@Param("pid") Integer pid);
+    List<Map<String,Object>> findAllCitys(@Param("pid") String pid);
 
     //民族查询
-    List<Map<String, Object>> findAllNations(@Param("id") Integer id);
+    List<Map<String, Object>> findAllNations(@Param("id") String id);
 }

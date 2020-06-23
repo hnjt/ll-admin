@@ -26,17 +26,13 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 
     @Autowired
     private RoleRepository roleRepository;
-    @Autowired
-    private LoginRepository loginRepository;
 
     @Override
     public Boolean createOrUpdateRole(Map<String, String> params) {
         Boolean result = false;
         String id = params.getOrDefault( "id", null );
         String name = params.getOrDefault( "name", null );
-        String userName = params.getOrDefault( "userName", null );
-        Login login = loginRepository.findByUsername( userName );
-        String creator = login.getId();
+        String creator = params.getOrDefault( "creator", null );
         if (StringUtils.isBlank( id ))
             result = this.save(name,creator);
         else
@@ -47,8 +43,10 @@ public class RoleServiceImpl extends BaseService implements RoleService {
     private Boolean update(String id, String name,String creator) {
 
         Boolean result = false;
-        Role role = new Role();
-        role.setId( id );
+        Role role = this.roleRepository.findById( id ).orElse( new Role() );
+        if (null == role && StringUtils.isBlank( role.getId() ))
+            throw new RuntimeException( "数据不存在" );
+
         role.setName( name );
         role.setUpdateTime( new Date(  ) );
         role.setModifier( creator );
@@ -61,6 +59,9 @@ public class RoleServiceImpl extends BaseService implements RoleService {
     private Boolean save(String name,String creator) {
 
         Boolean result = false;
+        if (null != this.roleRepository.getRoleByName( name ))
+            throw new RuntimeException( "角色名称已存在" );
+
         Role role = new Role();
         role.setId( CommonsUtil.getUUID() );
         role.setName( name );

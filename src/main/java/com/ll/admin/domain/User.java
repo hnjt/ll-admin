@@ -1,6 +1,7 @@
 package com.ll.admin.domain;
 
 import com.commons.EntityVo;
+import com.utils.EntityValidator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import java.io.Serializable;
 @Table
 public class User extends EntityVo implements Serializable {
 
-    private static final long serialVersionUID = 4L;
+    private static final long serialVersionUID = 5L;
 
     @Id
     @Column(name = "ID")
@@ -65,6 +66,10 @@ public class User extends EntityVo implements Serializable {
     }
 
     public void setPhone(String phone) {
+        if (null != phone){
+            if (!EntityValidator.isMobile( phone ))
+                throw new RuntimeException( "手机号码不合规" );
+        }
         this.phone = phone;
     }
 
@@ -73,6 +78,10 @@ public class User extends EntityVo implements Serializable {
     }
 
     public void setIdentity(String identity) {
+        if (null != identity){
+            if (!EntityValidator.isIDCard( identity ))
+                throw new RuntimeException( "身份证号码不合规" );
+        }
         this.identity = identity;
     }
 
@@ -113,6 +122,10 @@ public class User extends EntityVo implements Serializable {
     }
 
     public void setEmail(String email) {
+        if (null != email){
+            if (!EntityValidator.isEmail( email ))
+                throw new RuntimeException( "邮箱格式不合规" );
+        }
         this.email = email;
     }
 

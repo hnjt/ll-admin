@@ -1,9 +1,13 @@
 package com.commons;
 
+import com.ll.admin.domain.Login;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,5 +40,18 @@ public class BaseController {
             }
         }
         return paramMap;
+    }
+
+    /**
+     * 获取登录信息
+     * @param request
+     * @return
+     */
+    protected Login getDetails (HttpServletRequest request){
+        HttpSession session = request.getSession();
+        SecurityContextImpl ssc = (SecurityContextImpl) session.getAttribute( "SPRING_SECURITY_CONTEXT" );
+        Authentication authentication = ssc.getAuthentication();
+        Login details =(Login) authentication.getPrincipal();
+        return details;
     }
 }

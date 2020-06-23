@@ -2,6 +2,7 @@ package com.ll.admin.controller;
 
 import com.commons.ResultVo;
 import com.commons.BaseController;
+import com.ll.admin.domain.Login;
 import com.ll.admin.service.RoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -9,12 +10,11 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Slf4j
@@ -30,12 +30,12 @@ public class RoleController extends BaseController {
     @PostMapping(value = "/createOrUpdateRole")
     public String createOrUpdateRole (
             HttpServletRequest request,
-//            @ApiIgnore Authentication authentication,
             @ApiParam(required = false, name = "id", value = "角色ID") @RequestParam(name = "id", required = false) String id,
             @ApiParam(required = true, name = "name", value = "角色称谓") @RequestParam(name = "name", required = true) String name
     ){
         Map<String, String> params = initParams( request );
-//        params.put( "userName", authentication.getName());
+        Login details = super.getDetails( request );
+        params.put( "creator", details.getId());
         ResultVo resultVo = new ResultVo();
         resultVo.setSuccess( this.roleServiceImpl.createOrUpdateRole(params) );
         return resultVo.toJSONString();
@@ -51,4 +51,6 @@ public class RoleController extends BaseController {
         resultVo.setData( this.roleServiceImpl.findAllRole() );
         return resultVo.toJSONString();
     }
+
+    //TODO 角色关联业务相对多，暂时不提供删除接口
 }

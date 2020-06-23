@@ -3,6 +3,7 @@
 //import com.ll.admin.dao.LoginRepository;
 //import com.ll.admin.dao.UserRepository;
 //import com.ll.admin.domain.Login;
+//import com.ll.admin.domain.User;
 //import com.ll.admin.mapper.UserMapper;
 //import org.junit.jupiter.api.Test;
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +43,15 @@
 //        System.out.println(chenyb);
 //    }
 //
+//    @Test
+//    void userEtity() {
+//        User user = new User();
+//        user.setPhone( "18645636597" );
+////        user.setIdentity( "19898989898" );
+//        System.out.println(user.getPhone());
+////        System.out.println(user.getIdentity());
+//
+////        Login login = new Login();
+////        login.setUsername( "chenyb" );
+//    }
 //}

@@ -49,6 +49,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers( "/sys/**" ).permitAll()
+                .antMatchers( "/public/**" ).permitAll()
+                .antMatchers( "/static/**" ).permitAll()
+                .antMatchers( "/templates/**" ).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable()
@@ -70,7 +73,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         //设置静态资源不要拦截
-        web.ignoring().antMatchers("/js/**","/css/**", "/static/image/**","/static/**","/templates/**");
+        web.ignoring().antMatchers( "/public/**","/static/**","/templates/**");
     }
 
     @Autowired

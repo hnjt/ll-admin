@@ -27,7 +27,7 @@ public class OhterController {
     @GetMapping(value = "/findAllCitys")
     public String findAllCitys (
             HttpServletRequest request,
-            @ApiParam(required = false, name = "id", value = "城市ID") @RequestParam(name = "id", required = false) Integer id
+            @ApiParam(required = false, name = "id", value = "城市ID(null：查询所有省级单位；ID查询所有子集城市)") @RequestParam(name = "id", required = false) String id
     ){
         ResultVo resultVo = new ResultVo();
         resultVo.setData( this.otherServiceImpl.findAllCitys( id ) );
@@ -38,7 +38,7 @@ public class OhterController {
     @GetMapping(value = "/findAllNations")
     public String findAllNations (
             HttpServletRequest request,
-            @ApiParam(required = false, name = "id", value = "民族ID") @RequestParam(name = "id", required = false) Integer id
+            @ApiParam(required = false, name = "id", value = "民族ID(null：查询所有；ID查询指定信息)") @RequestParam(name = "id", required = false) String id
     ){
         ResultVo resultVo = new ResultVo();
         resultVo.setData( this.otherServiceImpl.findAllNations( id ) );

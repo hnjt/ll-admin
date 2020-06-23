@@ -18,12 +18,12 @@ public class OtherServiceImpl implements OtherService {
     private OtherMapper otherMapper;
 
     @Override
-    public List<Map<String, Object>> findAllCitys(Integer pid) {
+    public List<Map<String, Object>> findAllCitys(String pid) {
         return this.otherMapper.findAllCitys( pid );
     }
 
     @Override
-    public List<Map<String, Object>> findAllNations(Integer id) {
+    public List<Map<String, Object>> findAllNations(String id) {
         return this.otherMapper.findAllNations( id );
     }
 }
