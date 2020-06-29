@@ -32,9 +32,9 @@ public class DictionaryServiceImpl extends BaseService implements DictionaryServ
                 .filter( d ->{
                     if(StringUtils.isBlank( code ))
                         return true;//空值则不过滤
-                    else if ("NULL".equals( code.toUpperCase() )  && null == d.getPCode())
+                    else if ("NULL".equals( code.toUpperCase() )  && null == d.getParentCode())
                         return true;//字符串“NULL”,则遍历所有顶级字典
-                    else if (null != d.getPCode() && code.toUpperCase().equals( d.getPCode().toUpperCase() ))
+                    else if (null != d.getParentCode() && code.toUpperCase().equals( d.getParentCode().toUpperCase() ))
                         return true;//正常传值则返回下级数据结构
                     return false;
                 } )
@@ -77,7 +77,7 @@ public class DictionaryServiceImpl extends BaseService implements DictionaryServ
             dictionary.setCode( code );
         String pCode = params.getOrDefault( "pCode", null );
         if (StringUtils.isNotBlank( pCode ))
-            dictionary.setPCode( pCode );
+            dictionary.setParentCode( pCode );
         String orderNoStr = params.getOrDefault( "orderNo", null );
         Integer orderNo = StringUtils.isNotBlank( orderNoStr ) ? Integer.valueOf( orderNoStr ) : null;
         if (null != orderNo)
@@ -114,13 +114,13 @@ public class DictionaryServiceImpl extends BaseService implements DictionaryServ
 
         if (this.isCodeExist(code))
             throw new RuntimeException("CODE码已存在");
-        /*if (!this.isPCodeExist(pCode))
-            throw new RuntimeException("PCODE码不存在");*/
+        if (!this.isParentCodeExist(pCode))
+            throw new RuntimeException("PCODE码不存在");
 
         Dictionary dictionary = new Dictionary();
         dictionary.setId( CommonsUtil.getUUID() );
         dictionary.setCode( code );
-        dictionary.setPCode( pCode );
+        dictionary.setParentCode( pCode );
         dictionary.setOrderNo( orderNo );
         dictionary.setName( name );
         dictionary.setIsPermitDelete( isPermitDelete );
@@ -138,11 +138,11 @@ public class DictionaryServiceImpl extends BaseService implements DictionaryServ
         return result;
     }
 
-    /*private Boolean isPCodeExist(String pCode){
+    private Boolean isParentCodeExist(String pCode){
         Boolean result = false;
-        List<Dictionary> dictionarys = this.dictionaryRepository.findAllByPCode(pCode);
+        List<Dictionary> dictionarys = this.dictionaryRepository.findAllByParentCode(pCode);
         if (null != dictionarys && dictionarys.size() > 0)
             result = true;
         return result;
-    }*/
+    }
 }

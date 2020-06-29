@@ -22,8 +22,8 @@ public class Dictionary extends EntityVo implements Serializable {
     @Column(name = "CODE")
     private String code;
 
-    @Column(name = "P_CODE")
-    private String pCode;
+    @Column(name = "PARENT_CODE")
+    private String parentCode;
 
     @Column(name = "ORDER_NO")
     private Integer orderNo;
@@ -53,12 +53,12 @@ public class Dictionary extends EntityVo implements Serializable {
         this.code = StringUtils.isNotEmpty( code )?code.toUpperCase():code;
     }
 
-    public String getPCode() {
-        return pCode;
+    public String getParentCode() {
+        return parentCode;
     }
 
-    public void setPCode(String pCode) {
-        this.pCode = StringUtils.isNotEmpty( pCode )?pCode.toUpperCase():pCode;
+    public void setParentCode(String parentCode) {
+        this.parentCode = StringUtils.isNotEmpty( parentCode )?parentCode.toUpperCase():parentCode;
     }
 
     public Integer getOrderNo() {

@@ -2,6 +2,7 @@ package com.ll.admin.dao;
 
 import com.ll.admin.domain.Dictionary;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -19,8 +20,8 @@ public interface DictionaryRepository extends JpaRepository<Dictionary,String> {
 
     /**
      * 根据pCode查询结果集
-     * @param pCode
+     * @param parentCode
      * @return
      */
-    //List<Dictionary> findAllByPCode(@Param("pCode") String pCode);
+    List<Dictionary> findAllByParentCode(@Param("parentCode") String parentCode);
 }
