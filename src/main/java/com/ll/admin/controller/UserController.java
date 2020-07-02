@@ -23,29 +23,6 @@ public class UserController extends BaseController {
     @Autowired
     private UserService userServiceImpl;
 
-    @ApiOperation(value = "用户列表", notes = "[ 获取用户基础信息结果集 ]")
-    @GetMapping(value = "/findAllUser")
-    public String findAllUser (
-            HttpServletRequest request
-    ){
-        ResultVo resultVo = new ResultVo();
-        resultVo.setSuccess( true );
-        resultVo.setData( this.userServiceImpl.findAllUser() );
-        return resultVo.toJSONString();
-    }
-
-    @ApiOperation(value = "用户信息", notes = "[ 用户详细信息 ]")
-    @GetMapping(value = "/getUser")
-    public String getUser (
-            HttpServletRequest request,
-            @ApiParam(required = true, name = "userId", value = "用户ID") @RequestParam(name = "userId", required = true) String userId
-    ){
-        ResultVo resultVo = new ResultVo();
-        resultVo.setSuccess( true );
-        resultVo.setData( this.userServiceImpl.getUser(userId) );
-        return resultVo.toJSONString();
-    }
-
     @ApiOperation(value = "完善用户信息", notes = "[ 完善用户信息 (不包括帐户&密码)]")
     @PostMapping(value = "/updateUser")
     public String updateUser (
@@ -83,6 +60,16 @@ public class UserController extends BaseController {
         params.put( "creator" ,details.getId());
         ResultVo resultVo = new ResultVo();
         resultVo.setSuccess( this.userServiceImpl.deleteUser( params ) );
+        return resultVo.toJSONString();
+    }
+
+    @ApiOperation(value = "查询所有用户信息", notes = "[ 查询所有用户信息]")
+    @GetMapping(value = "/findUsers")
+    public String findUsers (
+            HttpServletRequest request
+    ){
+        ResultVo resultVo = new ResultVo();
+        resultVo.setData( this.userServiceImpl.findUsers(  ) );
         return resultVo.toJSONString();
     }
 }

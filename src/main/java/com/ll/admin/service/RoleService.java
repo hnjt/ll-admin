@@ -20,4 +20,11 @@ public interface RoleService {
      * @return
      */
     List<Role> findAllRole();
+
+    /**
+     * 删除角色信息
+     * @param params
+     * @return
+     */
+    Boolean deleteRole(Map<String, String> params);
 }

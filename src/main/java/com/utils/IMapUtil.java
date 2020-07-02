@@ -41,16 +41,6 @@ public class IMapUtil {
                     continue;
                 }
                 Class<?> fieldTypeClass = field.getType();
-               if (fieldTypeClass.toString().toUpperCase().contains("INT")){
-                   value = 0;
-               }else if (fieldTypeClass.toString().toUpperCase().contains("DOUBULE")){
-                   value = 0.0;
-               }
-               else if (fieldTypeClass.toString().toUpperCase().contains("FLOAT")){
-                   value = 0.0f;
-               }else if (fieldTypeClass.toString().toUpperCase().contains("STRING")){
-                   value = "";
-               }
                 value = convertValType(value, fieldTypeClass);
                 try {
                     if (StringUtils.isNotBlank( setMethodName )&& setMethodName.toUpperCase().contains( "SERIALVERSIONUID" ))

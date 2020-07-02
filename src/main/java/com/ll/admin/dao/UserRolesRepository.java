@@ -13,4 +13,6 @@ public interface UserRolesRepository extends JpaRepository<UserRoles,String> {
     List<UserRoles> findByLoginId(@Param( "loginId" ) String loginId);
 
     void deleteByLoginId(@Param( "loginId" ) String loginId);
+
+    void deleteAllByRolesId(@Param( "rolesId" ) String rolesId);
 }

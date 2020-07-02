@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50647
 File Encoding         : 65001
 
-Date: 2020-06-23 17:19:11
+Date: 2020-07-02 10:16:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3446,7 +3446,7 @@ DROP TABLE IF EXISTS `dictionary`;
 CREATE TABLE `dictionary` (
   `ID` varchar(32) NOT NULL,
   `CODE` varchar(40) DEFAULT NULL,
-  `P_CODE` varchar(32) DEFAULT NULL,
+  `PARENT_CODE` varchar(32) DEFAULT NULL,
   `ORDER_NO` int(11) DEFAULT NULL,
   `NAME` varchar(40) DEFAULT NULL,
   `IS_PERMIT_DELETE` int(1) DEFAULT NULL COMMENT '是否允许删除（1：是；0：否）',
@@ -3466,6 +3466,7 @@ INSERT INTO `dictionary` VALUES ('8b80a24c72dec5c20172dec5d7650001', 'FUN_ADD', 
 INSERT INTO `dictionary` VALUES ('8b80a24c72dec5c20172dec5d7b70002', 'FUN_DEL', 'FUN', '2', '删除', '0', '删除权限操作', '2020-06-23 09:36:57', '2020-06-23 09:36:57', null, null);
 INSERT INTO `dictionary` VALUES ('8b80a24c72dec5c20172dec5d80a0003', 'FUN_EDIT', 'FUN', '3', '编辑', '0', '编辑权限操作', '2020-06-23 09:36:58', '2020-06-23 09:36:58', null, null);
 INSERT INTO `dictionary` VALUES ('8b80a24c72dec5c20172dec5d8330004', 'FUN_QUE', 'FUN', '4', '查询', '0', '查询权限操作', '2020-06-23 09:37:00', '2020-06-23 09:37:00', null, null);
+INSERT INTO `dictionary` VALUES ('8b80a24c72dec5c20172dec5d8330005', 'FUN_DOWN', 'FUN', '5', '下载', '0', '下载权限操作', '2020-06-30 15:52:18', '2020-06-30 15:52:18', null, null);
 
 -- ----------------------------
 -- Table structure for login
@@ -3495,8 +3496,8 @@ INSERT INTO `login` VALUES ('4028b24272cd68730172cd6cf66b0000', '孟晓栋', 'me
 INSERT INTO `login` VALUES ('4028b24272d73fb70172d742e70d0000', '张飞', 'zhangfei', 'd3f0574edc75e8705b9e2de50c1980d1', '127.0.0.1', '200', '--', '2020-06-21 22:23:05', null, null, '2020-06-21 22:23:41', null, null);
 INSERT INTO `login` VALUES ('8b80a24c72d9f2940172d9f801ea0000', '刘能', 'liuneng', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', '--', '2020-06-22 11:00:09', null, null, '2020-06-22 11:03:21', null, null);
 INSERT INTO `login` VALUES ('8b80a24c72e02c320172e033fb4e0001', '刘备', 'liubei', '5b06db4f98ec906a859ecdccfc069d88', null, '200', '--', '2020-06-23 16:03:23', null, null, null, null, null);
-INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541112', '陈永斌', 'chenyb', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', null, '2020-06-21 21:48:16', null, '2020-06-21 21:48:16', '2020-06-23 17:15:41', '2020-06-21 21:48:16', null);
-INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541212', 'TEST', 'test', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', null, '2020-06-18 15:55:46', null, '2020-06-18 15:55:46', '2020-06-21 19:57:28', '2020-06-18 15:55:46', null);
+INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541112', '陈永斌', 'chenyb', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', null, '2020-06-21 21:48:16', null, '2020-06-21 21:48:16', '2020-07-02 09:22:39', '2020-06-21 21:48:16', null);
+INSERT INTO `login` VALUES ('9C1E37A2366E3441B1947F6364541212', '测试账号', 'test', '5b06db4f98ec906a859ecdccfc069d88', '127.0.0.1', '200', null, '2020-06-18 15:55:46', '9C1E37A2366E3441B1947F6364541112', '2020-07-02 10:15:22', '2020-06-21 19:57:28', '2020-06-18 15:55:46', null);
 
 -- ----------------------------
 -- Table structure for login_roles
@@ -3516,8 +3517,7 @@ CREATE TABLE `login_roles` (
 -- ----------------------------
 -- Records of login_roles
 -- ----------------------------
-INSERT INTO `login_roles` VALUES ('77169f63eaec44619ad672b9a586caca', 'f1ab78fa4d4443548d616d5d10624a13', '96e69e789fd640c59b2107383950079d', '2020-06-22 09:12:04', null, '--', null);
-INSERT INTO `login_roles` VALUES ('7737625f046948f8be6f83f8468d5647', 'd9c936e174d940a69a1ddc4ed4f7e6f4', '96e69e789fd640c59b2107383950079d', '2020-06-21 22:23:05', null, '--', null);
+INSERT INTO `login_roles` VALUES ('95672859df944b0a99041b84574cde79', '9C1E37A2366E3441B1947F6364541212', '96e69e789fd640c59b2107383950079d', '2020-07-02 10:11:45', null, '9C1E37A2366E3441B1947F6364541112', null);
 INSERT INTO `login_roles` VALUES ('9C1E27A2366E3441B1947F136454122S', '9C1E37A2366E3441B1947F6364541112', '1C1E37A2366E3441B1947F6364541212', '2020-06-21 21:49:12', '2020-06-21 21:49:12', null, null);
 INSERT INTO `login_roles` VALUES ('9C1E27A2366E3441B1947F636454122S', '9C1E37A2366E3441B1947F6364541112', '96e69e789fd640c59b2107383950079d', '2020-06-21 21:49:17', '2020-06-21 21:49:17', null, null);
 INSERT INTO `login_roles` VALUES ('a2a0cc1820da4265a6365c540783f377', '9C1E37A2366E3441B1947F6364541112', '9C1E37A2366E3441B1947F6364541117', '2020-06-21 21:49:19', '2020-06-21 21:49:19', '--', null);
@@ -3534,7 +3534,7 @@ CREATE TABLE `menu` (
   `ORDER_NO` int(9) DEFAULT NULL,
   `CREATE_DATE` datetime DEFAULT NULL,
   `CREATOR` varchar(32) DEFAULT NULL,
-  `MODIFY_DATE` datetime DEFAULT NULL,
+  `UPDATE_DATE` datetime DEFAULT NULL,
   `MODIFIER` varchar(32) DEFAULT NULL,
   `ICON` varchar(128) DEFAULT NULL,
   `PATH` varchar(1000) DEFAULT NULL,
@@ -3544,6 +3544,11 @@ CREATE TABLE `menu` (
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
+INSERT INTO `menu` VALUES ('8b80a24c7303c807017303c85d640000', '系统管理', '/admin', null, '1', '2020-06-30 13:52:10', '9C1E37A2366E3441B1947F6364541112', '2020-06-30 14:20:51', '9C1E37A2366E3441B1947F6364541112', null, '系统管理');
+INSERT INTO `menu` VALUES ('8b80a24c7303c807017303c9021a0001', '权限管理', '/admin/auth', '8b80a24c7303c807017303c85d640000', '1', '2020-06-30 13:52:52', '9C1E37A2366E3441B1947F6364541112', '2020-06-30 14:49:31', '9C1E37A2366E3441B1947F6364541112', null, '系统管理-权限管理');
+INSERT INTO `menu` VALUES ('8b80a24c7303c807017303cac3d80002', '用户管理', '/admin/auth/user', '8b80a24c7303c807017303c9021a0001', '1', '2020-06-30 13:54:47', '9C1E37A2366E3441B1947F6364541112', '2020-06-30 14:49:31', '9C1E37A2366E3441B1947F6364541112', null, '系统管理-权限管理-用户管理');
+INSERT INTO `menu` VALUES ('8b80a24c7303c807017303cd77c60003', '角色管理', '/admin/auth/role', '8b80a24c7303c807017303c9021a0001', '2', '2020-06-30 13:57:44', '9C1E37A2366E3441B1947F6364541112', '2020-06-30 14:49:31', '9C1E37A2366E3441B1947F6364541112', null, '系统管理-权限管理-角色管理');
+INSERT INTO `menu` VALUES ('8b80a24c7303c807017303cf99400004', '数据字典', '/admin/dictionary', '8b80a24c7303c807017303c85d640000', '2', '2020-06-30 14:00:04', '9C1E37A2366E3441B1947F6364541112', '2020-06-30 14:24:50', '9C1E37A2366E3441B1947F6364541112', null, '系统管理-数据字典');
 
 -- ----------------------------
 -- Table structure for nation
@@ -3634,9 +3639,34 @@ CREATE TABLE `role` (
 -- Records of role
 -- ----------------------------
 INSERT INTO `role` VALUES ('1C1E37A2366E3441B1947F6364541212', 'HONORABLE', null, null, null, null);
-INSERT INTO `role` VALUES ('755f1ab570eb490ca3eda18f6d2cf605', '真的是测试角色', '2020-06-23 15:25:21', '2020-06-23 15:26:36', '9C1E37A2366E3441B1947F6364541112', '9C1E37A2366E3441B1947F6364541112');
 INSERT INTO `role` VALUES ('96e69e789fd640c59b2107383950079d', 'ORDINARY', null, null, null, null);
 INSERT INTO `role` VALUES ('9C1E37A2366E3441B1947F6364541117', 'ADMIN', null, null, null, null);
+
+-- ----------------------------
+-- Table structure for role_menus
+-- ----------------------------
+DROP TABLE IF EXISTS `role_menus`;
+CREATE TABLE `role_menus` (
+  `ID` varchar(32) NOT NULL,
+  `ROLE_ID` varchar(32) NOT NULL,
+  `MENUS_ID` varchar(32) NOT NULL,
+  `FUN_CODE` varchar(255) DEFAULT NULL COMMENT '操作权限码',
+  `CREATOR` varchar(50) DEFAULT NULL,
+  `CREATE_DATE` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `MODIFIER` varchar(50) DEFAULT NULL,
+  `UPDATE_DATE` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`,`ROLE_ID`,`MENUS_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role_menus
+-- ----------------------------
+INSERT INTO `role_menus` VALUES ('5e48fdfc48f2497688e29964d2803235', '96e69e789fd640c59b2107383950079d', '8b80a24c7303c807017303cac3d80002', '0001', '9C1E37A2366E3441B1947F6364541112', '2020-07-02 10:12:48', null, null);
+INSERT INTO `role_menus` VALUES ('8b80a24c73096738017309678c4a0000', '9C1E37A2366E3441B1947F6364541117', '8b80a24c7303c807017303c85d640000', '1111', '9C1E37A2366E3441B1947F6364541112', '2020-07-01 16:04:08', null, null);
+INSERT INTO `role_menus` VALUES ('8b80a24c7309673801730967a6c50001', '9C1E37A2366E3441B1947F6364541117', '8b80a24c7303c807017303c9021a0001', '1111', '9C1E37A2366E3441B1947F6364541112', '2020-07-01 16:04:15', null, null);
+INSERT INTO `role_menus` VALUES ('8b80a24c7309673801730967c25a0002', '9C1E37A2366E3441B1947F6364541117', '8b80a24c7303c807017303cac3d80002', '1111', '9C1E37A2366E3441B1947F6364541112', '2020-07-01 16:04:22', null, null);
+INSERT INTO `role_menus` VALUES ('8b80a24c7309673801730967d7210003', '9C1E37A2366E3441B1947F6364541117', '8b80a24c7303c807017303cd77c60003', '1111', '9C1E37A2366E3441B1947F6364541112', '2020-07-01 16:04:27', null, null);
+INSERT INTO `role_menus` VALUES ('8b80a24c730967380173096842f80005', '9C1E37A2366E3441B1947F6364541117', '8b80a24c7303c807017303cf99400004', '11111', '9C1E37A2366E3441B1947F6364541112', '2020-07-01 16:04:55', null, null);
 
 -- ----------------------------
 -- Table structure for user
@@ -3664,12 +3694,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('', null, null, '2', '52', '512', null, null, null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('72621113ce6a4f90882a1b93ca023f77', '17600907430', '231025199505305512', '2', '52', '512', '沙河北大桥', 'mengxiaodong@163.com', '17600907430', '0', '1', '2020-06-20 00:32:50', null, '--', null);
-INSERT INTO `user` VALUES ('8b80a24c72e02c320172e033fb4e0001', null, null, '2', '52', '512', null, null, null, null, null, null, null, null, null);
-INSERT INTO `user` VALUES ('96870dfec2ed4d0d8e9b1f4c2cc97ecf', null, '111111', null, null, null, null, null, null, null, null, '2020-06-22 11:00:09', null, '--', null);
 INSERT INTO `user` VALUES ('9C1E37A2366E3441B1947F6364541112', '18645636597', '231025198807145532', '2', '52', '512', '沙河北大桥', '18645636597@163.com', '18645636597', '1', '1', '2020-06-20 00:39:02', '2020-06-20 00:39:02', '9C1E37A2366E3441B1947F6364541112', null);
-INSERT INTO `user` VALUES ('9ef024e0c98d439cb4e5995ae2080dc9', null, null, null, null, null, null, null, null, null, null, '2020-06-23 15:55:17', null, '--', null);
-INSERT INTO `user` VALUES ('d9c936e174d940a69a1ddc4ed4f7e6f4', null, '123123', null, null, null, null, null, null, null, '1', '2020-06-21 22:23:05', null, '--', null);
-INSERT INTO `user` VALUES ('d9e65f207c3a49ca9b31cd81355ec7e2', null, null, null, null, null, null, null, null, null, null, '2020-06-23 16:03:23', null, '--', null);
-INSERT INTO `user` VALUES ('f1ab78fa4d4443548d616d5d10624a13', null, null, null, null, null, null, null, null, null, null, '2020-06-22 09:12:04', null, '--', null);
+INSERT INTO `user` VALUES ('9C1E37A2366E3441B1947F6364541212', '13888888888', '231022199501219821', null, null, null, null, '13888888888@163.com', '13888888888', '0', '7', '2020-07-02 10:15:22', '2020-07-02 10:15:22', '9C1E37A2366E3441B1947F6364541112', '9C1E37A2366E3441B1947F6364541112');

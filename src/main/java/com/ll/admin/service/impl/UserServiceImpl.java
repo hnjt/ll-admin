@@ -10,7 +10,7 @@ import com.ll.admin.domain.Login;
 import com.ll.admin.domain.Role;
 import com.ll.admin.domain.User;
 import com.ll.admin.domain.UserRoles;
-import com.ll.admin.mapper.UserMapper;
+import com.ll.admin.mapper.AuthMapper;
 import com.ll.admin.service.UserService;
 import com.utils.EncryptionUtil;
 import com.utils.MD5;
@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,7 @@ import java.util.Map;
 public class UserServiceImpl extends BaseService implements UserService {
 
     @Autowired
-    private UserMapper userMapper;
+    private AuthMapper authMapper;
     @Autowired
     private LoginRepository loginRepository;
     @Autowired
@@ -40,15 +41,6 @@ public class UserServiceImpl extends BaseService implements UserService {
     @Autowired
     private RoleRepository roleRepository;
 
-    @Override
-    public List<Map<String, Object>> findAllUser() {
-        return userMapper.findAllUser();
-    }
-
-    @Override
-    public Map<String, Object> getUser(String userId) {
-        return userMapper.getUser( userId );
-    }
 
     //创建帐户
     @Override
@@ -99,7 +91,8 @@ public class UserServiceImpl extends BaseService implements UserService {
                 userRoles.setCreateTime( newDate );
                 userRoles.setCreator( "--" );
                 this.userRolesRepository.save( userRoles );
-            }
+            }else
+                log.info( "默认关联角色：ORDINARY，不存在" );
         }
         Login save = loginRepository.save( login );
 
@@ -265,7 +258,6 @@ public class UserServiceImpl extends BaseService implements UserService {
         if (null != address3)
             user.setAddress3( address3 );
         String address4Str = params.getOrDefault( "address4", null );
-        Integer address4 = StringUtils.isNotBlank( address4Str ) ? Integer.valueOf( address4Str ) : null;
         if (null != address4Str)
             user.setAddress4( address4Str );
         user.setModifier( creator );
@@ -326,5 +318,13 @@ public class UserServiceImpl extends BaseService implements UserService {
         if (null != super.entityManager.merge( login ))
             result = true;
         return result;
+    }
+
+    @Override
+    public Map<String, Object> findUsers() {
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put( "login", this.loginRepository.findAll());
+        resultMap.put( "user", this.userRepository.findAll());
+        return resultMap;
     }
 }

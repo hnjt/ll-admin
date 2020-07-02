@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ll.admin.mapper.UserMapper">
+<mapper namespace="com.ll.admin.mapper.AuthMapper">
 
     <sql id="login">
         l.ID,
@@ -28,6 +28,16 @@
        u.UPDATE_DATE AS uUpdateDate,
        u.CREATOR AS uReator,
        u.MODIFIER AS uModifier
+    </sql>
+
+    <sql id="menu">
+        m.ID,
+        m.NAME,
+        m.MENU_URL,
+        m.PID,
+        m.ORDER_NO,
+        m.ICON,
+        m.PATH
     </sql>
 
     <select id="findAllUser" resultType="java.util.Map">
@@ -67,5 +77,19 @@
         WHERE l.ID = #{userId}
         GROUP BY l.ID
         ORDER BY l.NAME DESC,l.CREATE_DATE ASC
+    </select>
+
+    <select id="getRoles" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT lr.LOGIN_ID,lr.CREATE_DATE,lr.UPDATE_DATE,lr.CREATOR,lr.MODIFIER,r.ID,r.`NAME`
+        FROM login_roles lr
+        JOIN role r ON lr.ROLES_ID = r.ID
+        WHERE lr.LOGIN_ID = #{userId}
+    </select>
+
+    <select id="getMeuns" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT rm.ROLE_ID,rm.FUN_CODE,rm.CREATOR,rm.CREATE_DATE,
+        <include refid="menu"></include>
+        FROM role_menus rm
+        JOIN menu m ON rm.MENUS_ID = m.ID
     </select>
 </mapper>

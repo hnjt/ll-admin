@@ -14,8 +14,8 @@ public class Dictionary extends EntityVo implements Serializable {
     private static final long serialVersionUID = 7L;
 
     @Id
-    @GeneratedValue(generator = "idGenerator")
-    @GenericGenerator(name = "idGenerator", strategy = "uuid")
+//    @GeneratedValue(generator = "idGenerator")
+//    @GenericGenerator(name = "idGenerator", strategy = "uuid")
     @Column(name = "ID",length = 32)
     private String id;
 

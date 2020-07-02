@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,7 @@ public class DictionaryServiceImpl extends BaseService implements DictionaryServ
                         return true;//正常传值则返回下级数据结构
                     return false;
                 } )
+                .sorted( Comparator.comparing( Dictionary::getOrderNo ))
                 .collect( Collectors.toList());
     }
 

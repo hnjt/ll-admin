@@ -53,4 +53,16 @@ public class RoleController extends BaseController {
     }
 
     //TODO 角色关联业务相对多，暂时不提供删除接口
+    @ApiOperation(value = "删除角色信息", notes = "[ 根据ID删除角色信息，有管理的不允许删除，可以强制删除 ]")
+    @PostMapping(value = "/deleteRole")
+    public String deleteRole (
+            HttpServletRequest request,
+            @ApiParam(required = true, name = "id", value = "角色ID") @RequestParam(name = "id", required = true) String id,
+            @ApiParam(required = true, name = "isCoerce", value = "是否强制") @RequestParam(name = "isCoerce", required = true) Boolean isCoerce
+    ){
+        Map<String, String> params = initParams( request );
+        ResultVo resultVo = new ResultVo();
+        this.roleServiceImpl.deleteRole(params);
+        return resultVo.toJSONString();
+    }
 }

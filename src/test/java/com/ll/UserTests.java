@@ -4,7 +4,7 @@ package com.ll;
 import com.ll.admin.dao.LoginRepository;
 import com.ll.admin.domain.Login;
 import com.ll.admin.domain.User;
-import com.ll.admin.mapper.UserMapper;
+import com.ll.admin.mapper.AuthMapper;
 import com.ll.admin.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ class UserTests {
    }
 //
    @Autowired
-   private UserMapper userMapper;
+   private AuthMapper userMapper;
 //
    @Test
    void loginAndUsers() {

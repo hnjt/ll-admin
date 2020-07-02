@@ -22,8 +22,8 @@ public class Login extends EntityVo implements Serializable,UserDetails{
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator = "idGenerator")
-    @GenericGenerator(name = "idGenerator", strategy = "uuid")
+//    @GeneratedValue(generator = "idGenerator")
+//    @GenericGenerator(name = "idGenerator", strategy = "uuid")
     @Column(name = "ID",length = 32)
     private String id;
 

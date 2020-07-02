@@ -7,19 +7,6 @@ import java.util.Map;
 
 public interface UserService {
 
-    /**
-     * 用户列表展示
-     * @return
-     */
-    List<Map<String,Object>> findAllUser ();
-
-    /**
-     * 用户详细信息查询
-     * 根据用户ID
-     * @param userId
-     * @return
-     */
-    Map<String,Object> getUser(String userId);
 
     /**
      * 创建帐户
@@ -54,4 +41,6 @@ public interface UserService {
      * @return
      */
     Boolean deleteUser(Map<String, String> params);
+
+    Map<String,Object> findUsers();
 }
