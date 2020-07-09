@@ -4,6 +4,7 @@ import com.commons.BaseService;
 import com.commons.CommonsUtil;
 import com.ll.admin.dao.RoleMenusRepository;
 import com.ll.admin.dao.UserRolesRepository;
+import com.ll.admin.domain.Login;
 import com.ll.admin.domain.RoleMenus;
 import com.ll.admin.domain.UserRoles;
 import com.ll.admin.mapper.AuthMapper;
@@ -13,10 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -46,8 +45,74 @@ public class AuthServiceImpl extends BaseService implements AuthService {
     }
 
     @Override
-    public List<Map<String, Object>> getMeuns(String roleId) {
-        return this.authMapper.getMeuns( roleId );
+    public List<Map<String, Object>> getMeuns(String type,String id) {
+        String typetoUpperCase = type.toUpperCase();
+        List<String> list = new ArrayList<>(  );
+        switch (typetoUpperCase){
+            case "USER":
+                List<UserRoles> logins = this.userRolesRepository.findByLoginId( id );
+                if (logins == null || logins.size() == 0)
+                    throw new RuntimeException( "当前用户没有绑定任何角色！" );
+                list = Arrays.asList( logins.stream().map(UserRoles::getRolesId ).collect( Collectors.joining( "," )).split( "," ));
+                break;
+            case "ROLE":
+                list.add( id );
+                break;
+            case "ROLES":
+                String[] split = id.split( "," );
+                list = Arrays.asList( split );
+                break;
+        }
+
+        if (typetoUpperCase.contains( "ROLE" ))
+            return this.authMapper.getMeuns( list );//角色ID获取权限码，不需要过滤
+
+        List<Map<String, Object>> meuns = this.authMapper.getMeuns( list );
+        for (int i = 0; i < meuns.size(); i++) {
+            String resultId = meuns.get( i ).getOrDefault( "id", "" ).toString();
+            String resultRoleId = meuns.get( i ).getOrDefault( "roleId", "" ).toString();
+            char[] resultFunCodes = meuns.get( i ).getOrDefault( "funCode", "" ).toString().toCharArray();
+            for (int j = 0; j < meuns.size(); j++) {
+                String paramId = meuns.get( j ).getOrDefault( "id", "" ).toString();
+                String paramRoleId = meuns.get( j ).getOrDefault( "roleId", "" ).toString();
+                char[] paramFunCodes = meuns.get( j ).getOrDefault( "funCode", "" ).toString().toCharArray();
+                if (resultId.equals( paramId ) && !resultRoleId.equals( paramRoleId )){//同样的菜单权限对比权限码
+                    resultFunCodes = this.getFunCode( resultFunCodes, paramFunCodes );//获取的funCode替换原有的funCode值，准备下次做比计较
+                }
+            }
+            //最后的funCode值就是最大权限
+            meuns.get( i ).put( "funCode",String.valueOf( resultFunCodes ));
+        }
+
+        return meuns.stream().distinct().collect( Collectors.toList());
+    }
+
+    //获取最大权限权限码
+    private char[] getFunCode(char[] resultFunCodes,char[] paramFunCodes){
+        StringBuffer sb = new StringBuffer();
+        int length = resultFunCodes.length >= paramFunCodes.length ? resultFunCodes.length : paramFunCodes.length;
+        for (int i = 0; i < length; i++) {
+            char resultFunCode = '0';
+            char paramFunCode = '0';
+
+            try {
+                resultFunCode = resultFunCodes[i];
+            }catch (Exception e){
+                resultFunCode = '0';
+            }
+
+            try {
+                paramFunCode = paramFunCodes[i];
+            }catch (Exception e){
+                paramFunCode = '0';
+            }
+
+            if (resultFunCode == '1'||paramFunCode == '1')
+                sb.append('1');
+            else
+                sb.append('1');
+        }
+        return sb.toString().toCharArray();
     }
 
     @Override

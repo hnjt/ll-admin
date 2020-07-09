@@ -86,10 +86,18 @@
         WHERE lr.LOGIN_ID = #{userId}
     </select>
 
-    <select id="getMeuns" parameterType="java.lang.String" resultType="java.util.Map">
+    <select id="getMeuns" parameterType="java.util.List" resultType="java.util.Map">
         SELECT rm.ROLE_ID,rm.FUN_CODE,rm.CREATOR,rm.CREATE_DATE,
         <include refid="menu"></include>
         FROM role_menus rm
         JOIN menu m ON rm.MENUS_ID = m.ID
+        <where>
+            <if test="roleIdList != null and roleIdList.size() > 0">
+                rm.ROLE_ID IN
+                <foreach collection="roleIdList" item="item" separator="," open="(" close=")" index="index">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
     </select>
 </mapper>

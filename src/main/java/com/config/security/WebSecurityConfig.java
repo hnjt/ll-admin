@@ -54,7 +54,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/templates/**" ).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .csrf().disable()
+                .cors()
+                .and()
+                .csrf()
+                .disable()
                 .formLogin()
                 .loginPage( loginUrl )//登录页面
                 .loginProcessingUrl(loginProcessingUrl)//登录action 提交地址

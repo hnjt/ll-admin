@@ -1,7 +1,11 @@
 package com.config.security;
 
-import com.ll.admin.dto.Msg;
+import com.ll.admin.domain.Login;
+import com.ll.admin.domain.Role;
+import com.ll.admin.service.AuthService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -10,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * 登录跳转配置
@@ -17,6 +25,9 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 @Controller
 public class RequestController {
+
+    @Autowired
+    private AuthService authServiceImpl;
 
     /**
      * 成功首页
@@ -26,8 +37,10 @@ public class RequestController {
      */
     @RequestMapping("/")
     public String index (@AuthenticationPrincipal UserDetails userDetails, Model model){
-        Msg msg = new Msg( "测试标题", "测试内容", "额外信息，只有管理员可以看到！" );
-        model.addAttribute( "msg",msg );
+        Login login = (Login) userDetails;
+        List<Map<String, Object>> auth = this.authServiceImpl.getMeuns( "user", login.getId() );
+        model.addAttribute( "login",login );
+        model.addAttribute( "auth",auth );
         return "index";
     }
 

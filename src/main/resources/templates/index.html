@@ -4,17 +4,24 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Index</title>
-    <script th:src="@{/public/js/jquery-3.4.0.js}"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css}"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js}"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style th:inline="text">
+        .bg {
+            background:url("static/image/timg.jpg") no-repeat center fixed;
+            background-size:contain;
+        }
+    </style>
+    <script type="text/javascript">
+
+    </script>
 </head>
-<body>
-<button id="btn">点击事件测试</button>
-<script type="text/javascript">
-    var btn = document.getElementById("btn");
-    btn.onclick = function(){
-        alert("生效！");
-    }
-</script>
-<!--<img th:src="@{../static/image/timg.jpg}" height="688" width="1024"/>-->
+<body class="row bg">
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -29,15 +36,15 @@
 </nav>
 <div class="container">
     <div class="starter-template">
-        <h1 th:text="${msg.title}"></h1>
-        <p class="bg-primary" th:text="${msg.content}"></p>
+<!--        <h1 th:text="${msg.title}"></h1>-->
+<!--        <p class="bg-primary" th:text="${msg.content}"></p>-->
 
-        <div sec:authorize="hasRole('ROLE_ADMIN')">
-            <p class="bg-info">管理员能查看的信息</p>
-        </div>
-        <div sec:authorize="hasRole('ROLE_USER')">
-            <p class="bg-info">用户能查看的信息</p>
-        </div>
+<!--        <div sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--            <p class="bg-info">管理员能查看的信息</p>-->
+<!--        </div>-->
+<!--        <div sec:authorize="hasRole('ROLE_USER')">-->
+<!--            <p class="bg-info">用户能查看的信息</p>-->
+<!--        </div>-->
         <form th:action="@{/signout}" method="post">
             <input type="submit" class="btn btn-primary" value="注销" >
         </form>

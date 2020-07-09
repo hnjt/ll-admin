@@ -43,15 +43,16 @@ public class RoleServiceImpl extends BaseService implements RoleService {
         Boolean result = false;
         String id = params.getOrDefault( "id", null );
         String name = params.getOrDefault( "name", null );
+        String order = params.getOrDefault( "order", null );
         String creator = params.getOrDefault( "creator", null );
         if (StringUtils.isBlank( id ))
-            result = this.save(name,creator);
+            result = this.save(name,creator,order);
         else
-            result = this.update(id,name,creator);
+            result = this.update(id,name,creator,order);
         return result;
     }
 
-    private Boolean update(String id, String name,String creator) {
+    private Boolean update(String id, String name,String order,String creator) {
 
         Boolean result = false;
         Role role = this.roleRepository.findById( id ).orElse( new Role() );
@@ -61,6 +62,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
 
         role.setName( name );
         role.setUpdateTime( new Date(  ) );
+        role.setOrder( order );
         role.setModifier( creator );
 
         if (null != super.entityManager.merge( role ))
@@ -68,7 +70,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
         return result;
     }
 
-    private Boolean save(String name,String creator) {
+    private Boolean save(String name,String creator,String order) {
 
         Boolean result = false;
         this.isRoleNameExist(name);
@@ -77,6 +79,7 @@ public class RoleServiceImpl extends BaseService implements RoleService {
         role.setId( CommonsUtil.getUUID() );
         role.setName( name );
         role.setCreateTime( new Date());
+        role.setOrder( order );
         role.setCreator( creator );
 
         if (null != this.roleRepository.save( role ))

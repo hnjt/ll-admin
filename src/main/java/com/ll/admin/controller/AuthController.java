@@ -62,11 +62,12 @@ public class AuthController extends BaseController {
     @GetMapping(value = "/getMeuns")
     public String getMeuns (
             HttpServletRequest request,
-            @ApiParam(required = true, name = "roleId", value = "角色ID") @RequestParam(name = "roleId", required = true) String roleId
+            @ApiParam(required = true, name = "type", value = "切换ID类型(user:用户ID；role:角色ID；roles:多个角色ID[多个角色ID需要‘,’分离])") @RequestParam(name = "type", required = true) String type,
+            @ApiParam(required = true, name = "id", value = "用户/角色ID(多个角色ID'，'分离)") @RequestParam(name = "id", required = true) String id
     ){
         ResultVo resultVo = new ResultVo();
         resultVo.setSuccess( true );
-        resultVo.setData( this.authServiceImpl.getMeuns(roleId) );
+        resultVo.setData( this.authServiceImpl.getMeuns(type,id) );
         return resultVo.toJSONString();
     }
 

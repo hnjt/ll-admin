@@ -20,6 +20,8 @@ public class Role extends EntityVo implements Serializable {
     private String id;
     @Column(name = "NAME")
     private String name;
+    @Column(name = "ORDER")
+    private String order;
 
     public String getId() {
         return id;
@@ -37,6 +39,13 @@ public class Role extends EntityVo implements Serializable {
         this.name = name;
     }
 
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
+    }
 
     @Override
     public String toString() {

@@ -12,7 +12,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
- * 线程池配置 by CHENYB date 2019-07-29
+ * 线程池配置 by CHENYB
  */
 @Configuration
 @EnableAsync

@@ -31,6 +31,7 @@ public class RoleController extends BaseController {
     public String createOrUpdateRole (
             HttpServletRequest request,
             @ApiParam(required = false, name = "id", value = "角色ID") @RequestParam(name = "id", required = false) String id,
+            @ApiParam(required = true, name = "order", value = "权重") @RequestParam(name = "order", required = true) String order,
             @ApiParam(required = true, name = "name", value = "角色称谓") @RequestParam(name = "name", required = true) String name
     ){
         Map<String, String> params = initParams( request );

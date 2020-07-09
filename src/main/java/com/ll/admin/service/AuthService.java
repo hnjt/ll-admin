@@ -2,6 +2,7 @@ package com.ll.admin.service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface AuthService {
 
@@ -28,10 +29,11 @@ public interface AuthService {
 
     /**
      * 菜单信息&操作权限
-     * @param roleId
+     * @param id
+     * @param type
      * @return
      */
-    List<Map<String,Object>> getMeuns(String roleId);
+    List<Map<String,Object>> getMeuns(String type, String id);
 
     /**
      * 用户绑定角色

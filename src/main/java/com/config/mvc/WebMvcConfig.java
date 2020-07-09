@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -20,6 +21,20 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addViewController( loginUrl ).setViewName( loginUrl );
         registry.addViewController( swaggerUrl ).setViewName( "redirect:/swagger-ui.html" );
         registry.setOrder( Ordered.HIGHEST_PRECEDENCE);
+    }
+
+    /**
+     * 解决swagger页面丢失
+     * 解决mvc映射失效
+     * @param registry
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**").addResourceLocations(
+                "classpath:/static/");
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations(
+                "classpath:/META-INF/resources/");
+        WebMvcConfigurer.super.addResourceHandlers(registry);
     }
 
     /**
