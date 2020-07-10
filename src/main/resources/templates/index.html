@@ -20,6 +20,7 @@
         function getMenuFun(v){
             var id = v.type;
             alert(id)
+            /*ajax 需要调试*/
             $.ajax({
                 type:"GET",
                 url:"/menu/findAllMenuByPid?pid=" + id,
