@@ -1,7 +1,7 @@
 package com.ll.admin.domain;
 
-import com.commons.EntityVo;
-import com.utils.EntityValidator;
+import com.ll.commons.EntityVo;
+import com.ll.utils.EntityValidator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

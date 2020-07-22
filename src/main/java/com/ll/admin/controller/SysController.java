@@ -1,7 +1,7 @@
 package com.ll.admin.controller;
 
-import com.commons.BaseController;
-import com.commons.ResultVo;
+import com.ll.commons.BaseController;
+import com.ll.commons.ResultVo;
 import com.ll.admin.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,7 +21,7 @@ import java.util.Map;
  * 配置的接口可以匿名访问
  */
 @Slf4j
-@Api(description = "系统")
+@Api(tags = "系统")
 @RequestMapping("/sys")
 @RestController
 public class SysController extends BaseController {

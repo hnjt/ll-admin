@@ -1,6 +1,6 @@
 package com.ll.admin.controller;
 
-import com.commons.ResultVo;
+import com.ll.commons.ResultVo;
 import com.ll.admin.service.OtherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
-@Api(description = "其它[城市、民族]")
+@Api(tags = "其它[城市、民族]")
 @RequestMapping("/other")
 @RestController
 public class OhterController {

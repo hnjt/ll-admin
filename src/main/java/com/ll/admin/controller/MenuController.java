@@ -1,9 +1,8 @@
 package com.ll.admin.controller;
 
-import com.commons.BaseController;
-import com.commons.ResultVo;
 import com.ll.admin.domain.Login;
-import com.ll.admin.service.DictionaryService;
+import com.ll.commons.BaseController;
+import com.ll.commons.ResultVo;
 import com.ll.admin.service.MenuService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Slf4j
-@Api(description = "菜单")
+@Api(tags = "菜单")
 @RequestMapping("/menu")
 @RestController
 public class MenuController extends BaseController {

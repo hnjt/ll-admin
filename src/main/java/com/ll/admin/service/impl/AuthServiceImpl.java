@@ -1,14 +1,13 @@
 package com.ll.admin.service.impl;
 
-import com.commons.BaseService;
-import com.commons.CommonsUtil;
 import com.ll.admin.dao.RoleMenusRepository;
 import com.ll.admin.dao.UserRolesRepository;
-import com.ll.admin.domain.Login;
 import com.ll.admin.domain.RoleMenus;
 import com.ll.admin.domain.UserRoles;
 import com.ll.admin.mapper.AuthMapper;
 import com.ll.admin.service.AuthService;
+import com.ll.commons.BaseService;
+import com.ll.commons.CommonsUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

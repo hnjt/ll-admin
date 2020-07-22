@@ -1,6 +1,6 @@
 package com.ll.admin.domain;
 
-import com.commons.EntityVo;
+import com.ll.commons.EntityVo;
 
 import java.io.Serializable;
 

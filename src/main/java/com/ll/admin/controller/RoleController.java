@@ -1,24 +1,21 @@
 package com.ll.admin.controller;
 
-import com.commons.ResultVo;
-import com.commons.BaseController;
 import com.ll.admin.domain.Login;
+import com.ll.commons.BaseController;
+import com.ll.commons.ResultVo;
 import com.ll.admin.service.RoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Slf4j
-@Api(description = "角色")
+@Api(tags = "角色")
 @RequestMapping("/role")
 @RestController
 public class RoleController extends BaseController {

@@ -1,14 +1,12 @@
 package com.ll.admin.service.impl;
 
-import com.commons.CommonsUtil;
-import com.commons.BaseService;
-import com.ll.admin.dao.LoginRepository;
 import com.ll.admin.dao.RoleMenusRepository;
 import com.ll.admin.dao.RoleRepository;
 import com.ll.admin.dao.UserRolesRepository;
-import com.ll.admin.domain.Login;
 import com.ll.admin.domain.Role;
 import com.ll.admin.mapper.RoleMapper;
+import com.ll.commons.BaseService;
+import com.ll.commons.CommonsUtil;
 import com.ll.admin.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

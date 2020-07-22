@@ -2,7 +2,6 @@ package com.ll.admin.service;
 
 import com.ll.admin.domain.Login;
 
-import java.util.List;
 import java.util.Map;
 
 public interface UserService {
@@ -15,7 +14,7 @@ public interface UserService {
      * @param isMatchRoles
      * @return
      */
-    Login createAccount(Map<String, String> params,Boolean isMatchRoles);
+    Login createAccount(Map<String, String> params, Boolean isMatchRoles);
 
     /**
      * 密码重置

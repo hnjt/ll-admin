@@ -1,7 +1,5 @@
 package com.ll.admin.service.impl;
 
-import com.commons.BaseService;
-import com.commons.CommonsUtil;
 import com.ll.admin.dao.LoginRepository;
 import com.ll.admin.dao.RoleRepository;
 import com.ll.admin.dao.UserRepository;
@@ -12,8 +10,11 @@ import com.ll.admin.domain.User;
 import com.ll.admin.domain.UserRoles;
 import com.ll.admin.mapper.AuthMapper;
 import com.ll.admin.service.UserService;
-import com.utils.EncryptionUtil;
-import com.utils.MD5;
+
+import com.ll.commons.BaseService;
+import com.ll.commons.CommonsUtil;
+import com.ll.utils.EncryptionUtil;
+import com.ll.utils.MD5;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,6 @@ import java.util.Map;
 @Transactional
 public class UserServiceImpl extends BaseService implements UserService {
 
-    @Autowired
-    private AuthMapper authMapper;
     @Autowired
     private LoginRepository loginRepository;
     @Autowired

@@ -1,9 +1,8 @@
 package com.ll.admin.domain;
 
-import com.commons.EntityVo;
+import com.ll.commons.EntityVo;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.utils.EntityValidator;
-import org.hibernate.annotations.GenericGenerator;
+import com.ll.utils.EntityValidator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

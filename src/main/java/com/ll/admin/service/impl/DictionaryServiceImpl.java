@@ -1,9 +1,9 @@
 package com.ll.admin.service.impl;
 
-import com.commons.BaseService;
-import com.commons.CommonsUtil;
 import com.ll.admin.dao.DictionaryRepository;
 import com.ll.admin.domain.Dictionary;
+import com.ll.commons.BaseService;
+import com.ll.commons.CommonsUtil;
 import com.ll.admin.service.DictionaryService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

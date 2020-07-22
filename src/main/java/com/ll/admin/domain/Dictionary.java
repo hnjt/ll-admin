@@ -1,8 +1,7 @@
 package com.ll.admin.domain;
 
-import com.commons.EntityVo;
+import com.ll.commons.EntityVo;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
