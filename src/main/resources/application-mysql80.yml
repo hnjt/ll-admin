@@ -5,6 +5,9 @@
 #                          -- spring --                              #
 ######################################################################
 spring:
+  application:
+    name: ll-admin
+
   datasource:
     name: druidDataSource
     type: com.alibaba.druid.pool.DruidDataSource
