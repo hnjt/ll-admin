@@ -65,7 +65,7 @@ spring:
 #                           -- item --                               #
 ######################################################################
 ll:
-  name: lessons learned
+  name: lessons learned admin
   # 版本
   version: 1.0.0
   # 版权年份
